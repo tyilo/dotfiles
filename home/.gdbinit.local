@@ -1,0 +1,318 @@
+set history filename ~/.gdb_history
+set history save
+
+set $COLOREDPROMPT = 0
+set $COLOR_REGVAL = $WHITE
+set $64BITS = 1
+
+define kernel
+	target remote localhost:8864
+end
+
+define allocstring
+	shell rm -f /tmp/gdb-allocstring-input
+	
+	if $argc > 0
+		set logging off
+		set logging file /tmp/gdb-allocstring-input
+		set logging redirect on
+		set logging on
+		
+		echo $arg0
+		if $argc > 1
+			printf " "
+			echo $arg1
+		end
+		if $argc > 2
+			printf " "
+			echo $arg2
+		end
+		if $argc > 3
+			printf " "
+			echo $arg3
+		end
+		if $argc > 4
+			printf " "
+			echo $arg4
+		end
+		if $argc > 5
+			printf " "
+			echo $arg5
+		end
+		if $argc > 6
+			printf " "
+			echo $arg6
+		end
+		if $argc > 7
+			printf " "
+			echo $arg7
+		end
+		if $argc > 8
+			printf " "
+			echo $arg8
+		end
+		if $argc > 9
+			printf " "
+			echo $arg9
+		end
+		
+		set logging off
+	end
+	
+	shell if [ -f /tmp/gdb-allocstring-input ]; then                       \
+		string="$(cat /tmp/gdb-allocstring-input)";                        \
+	else                                                                   \
+		read -p "> " string;                                               \
+	fi;                                                                    \
+	exec 1>/tmp/gdb-allocstring;                                           \
+	echo "set logging file /dev/null";                                     \
+	echo "set logging redirect on";                                        \
+	echo "set logging on";                                                 \
+	echo "p (void *)__dyld_malloc(${#string} + (int)1.)";                  \
+	echo "set logging off";                                                \
+	echo "set \$allocstring = (char *)$";                                  \
+	for((i = 0; i < ${#string}; i++))                                      \
+	{                                                                      \
+		echo "set *(char *)(\$allocstring + (int)$i.) = '${string:$i:1}'"; \
+	};                                                                     \
+	echo "set *(char *)(\$allocstring + (int)$i.) = '\0'";                 \
+	echo "p \$allocstring"
+
+	source /tmp/gdb-allocstring
+	
+	shell rm -f /tmp/gdb-allocstring;
+	shell rm -f /tmp/gdb-allocstring-input;
+end
+document allocstring
+| allocstring [word1, word2, ...]
+| Allocates the inputted string with malloc
+| If no argument is given, prompts you for the string
+end
+
+define po2
+	if $argc == 0
+		help po2
+	else
+		set logging off
+		set logging file /dev/null
+		set logging redirect on
+		set logging on
+		
+		set $_po_input = $arg0
+		
+		allocstring %@
+		p (void *)CFStringCreateWithCString(0, $, 0x08000100)
+		p (void *)CFStringCreateWithFormat(0, 0, $, $_po_input)
+		
+		set logging off
+		
+		p (const char *)CFStringGetCStringPtr($, 0)
+	end
+end
+document po2
+| po2 objc-object
+| Prints the description of an ObjC object
+end
+
+define poclass
+	if $argc == 0
+		help poclass
+	else
+		set logging off
+		set logging file /dev/null
+		set logging redirect on
+		set logging on
+		
+		p (void *)object_getClass($arg0)
+		
+		set logging off
+		
+		po $
+	end
+end
+document poclass
+| poclass objc-object
+| Prints the description of the ObjC class
+end
+
+define print_objc_msgSend_args
+	disable
+	
+	if $ARM == 0
+		set logging off
+		set logging file /dev/null
+		set logging redirect on
+		set logging on
+		
+		if $64BITS == 0
+			set $_object = *((void **)($esp+4))
+			set $_sel = *((void **)($esp+8))
+		else
+			set $_object = $rdi
+			set $_sel = $rsi
+		end
+		
+		p (void *)object_getClass($_object)
+		set $_class = $
+		
+		p (int)class_isMetaClass($_class)
+		
+		set $_symbol = '-'
+		
+		if $ == 1
+			set $_class = $_object
+			set $_symbol = '+'
+		end
+		
+		po $_class
+		
+		set logging off
+		
+		printf "%c[%s %s]\n", $_symbol, $, $_sel
+		
+	else
+
+	end
+	
+	enable
+end
+
+define direct_call
+	if $argc == 0 || $argc > 7 || $ARM == 1 || $64BITS == 0
+		help direct_call
+	else
+		set $o_SHOW_CONTEXT = $SHOW_CONTEXT
+		set $SHOW_CONTEXT = 0
+		
+		set $o_rax = $rax
+		set $o_rbx = $rbx
+		set $o_rcx = $rcx
+		set $o_rdx = $rdx
+		set $o_rsi = $rsi
+		set $o_rdi = $rdi
+		set $o_rbp = $rbp
+		set $o_rsp = $rsp
+		set $o_r0  = $r0
+		set $o_r1  = $r1
+		set $o_r2  = $r2
+		set $o_r3  = $r3
+		set $o_r4  = $r4
+		set $o_r5  = $r5
+		set $o_r6  = $r6
+		set $o_r7  = $r7
+		set $o_r8  = $r8
+		set $o_r9  = $r9
+		set $o_r10 = $r10
+		set $o_r11 = $r11
+		set $o_r12 = $r12
+		set $o_r13 = $r13
+		set $o_r14 = $r14
+		set $o_r15 = $r15
+		
+		set $o_xmm0  = $xmm0
+		set $o_xmm1  = $xmm1
+		set $o_xmm2  = $xmm2
+		set $o_xmm3  = $xmm3
+		set $o_xmm4  = $xmm4
+		set $o_xmm5  = $xmm5
+		set $o_xmm6  = $xmm6
+		set $o_xmm7  = $xmm7
+		set $o_xmm8  = $xmm8
+		set $o_xmm9  = $xmm9
+		set $o_xmm10 = $xmm10
+		set $o_xmm11 = $xmm11
+		set $o_xmm12 = $xmm12
+		set $o_xmm13 = $xmm13
+		set $o_xmm14 = $xmm14
+		set $o_xmm15 = $xmm15
+		
+		set $o_pc  = $pc
+		set $o_eflags = $eflags
+		
+		set $rsp = $rsp - 0x8
+		set *(long *)($rsp) = $pc
+		
+		set $pc = $arg0
+		
+		if $argc > 1
+			set $rdi = $arg1
+		end
+		if $argc > 2
+			set $rsi = $arg2
+		end
+		if $argc > 3
+			set $rdx = $arg3
+		end
+		if $argc > 4
+			set $rcx = $arg4
+		end
+		if $argc > 5
+			set $r8 = $arg5
+		end
+		if $argc > 6
+			set $r9 = $arg6
+		end
+		
+		finish
+		
+		printf "Returned value:\n"
+		print $rax
+		
+		set $rax = $o_rax
+		set $rbx = $o_rbx
+		set $rcx = $o_rcx
+		set $rdx = $o_rdx
+		set $rsi = $o_rsi
+		set $rdi = $o_rdi
+		set $rbp = $o_rbp
+		set $rsp = $o_rsp
+		set $r0  = $o_r0
+		set $r1  = $o_r1
+		set $r2  = $o_r2
+		set $r3  = $o_r3
+		set $r4  = $o_r4
+		set $r5  = $o_r5
+		set $r6  = $o_r6
+		set $r7  = $o_r7
+		set $r8  = $o_r8
+		set $r9  = $o_r9
+		set $r10 = $o_r10
+		set $r11 = $o_r11
+		set $r12 = $o_r12
+		set $r13 = $o_r13
+		set $r14 = $o_r14
+		set $r15 = $o_r15
+		
+		set $xmm0  = $o_xmm0
+		set $xmm1  = $o_xmm1
+		set $xmm2  = $o_xmm2
+		set $xmm3  = $o_xmm3
+		set $xmm4  = $o_xmm4
+		set $xmm5  = $o_xmm5
+		set $xmm6  = $o_xmm6
+		set $xmm7  = $o_xmm7
+		set $xmm8  = $o_xmm8
+		set $xmm9  = $o_xmm9
+		set $xmm10 = $o_xmm10
+		set $xmm11 = $o_xmm11
+		set $xmm12 = $o_xmm12
+		set $xmm13 = $o_xmm13
+		set $xmm14 = $o_xmm14
+		set $xmm15 = $o_xmm15
+		
+		set $pc  = $o_pc
+		set $eflags = $o_eflags
+		
+		set $SHOW_CONTEXT = $o_SHOW_CONTEXT
+		
+		if $SHOW_CONTEXT == 1
+			hook-stop
+		end
+	end
+end
+document direct_call
+| direct_call address [arg1, arg2, ...]
+| Only x86_64 supported
+| Maximum 6 args is supported
+end
+

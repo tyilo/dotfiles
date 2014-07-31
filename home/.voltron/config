@@ -1,0 +1,9 @@
+{
+	"view": {
+		"register_view": {
+			"format_defaults": {
+				"value_colour": "white"
+			}
+		}
+	}
+}

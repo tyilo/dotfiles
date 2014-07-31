@@ -1,0 +1,2 @@
+set bind-tty-special-chars off
+"\C-w": backward-kill-word

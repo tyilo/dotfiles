@@ -1,0 +1,17 @@
+[user]
+	name = Asger Drewsen
+	email = asgerdrewsen@gmail.com
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	g = grep --break --heading --line-number
+[push]
+	default = simple
+[color]
+	ui = true
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[grep]
+	lineNumber = true
+[core]
+	autocrlf = false
