@@ -30,6 +30,10 @@ set -x iOSOpenDevDevice iphone
 set -x LC_ALL en_US.UTF-8
 set -x LANG $LC_ALL
 
+set fish_greeting ''
+
+set SIMBLpatches "$HOME/Library/Application Support/SIMBL/Plugins/SIMBLpatches.bundle/Contents/MacOS/SIMBLpatches"
+
 stty werase undef
 bind \cw backward-kill-word
 

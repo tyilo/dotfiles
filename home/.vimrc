@@ -20,6 +20,8 @@ cmap w!! exec 'w !sudo dd of=' . shellescape(expand('%'))
 
 colorscheme Tomorrow-Night-Bright
 
+set clipboard=unnamed
+
 let g:guessindent_prefer_tabs = 1
 autocmd BufReadPost * :GuessIndent
 
@@ -37,3 +39,13 @@ if &term =~ "xterm.*"
     cmap <Esc>[201~ <nop>
 endif
 
+set guifont=Anonymous\ Pro:h14
+
+function! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()

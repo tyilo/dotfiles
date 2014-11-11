@@ -18,6 +18,6 @@ function fish_prompt
 		set prompt $prompt(set_color normal)'>'
 	end
 
-	set prompt $prompt' '
+	set prompt $prompt(set_color normal)' '
 	echo -n $prompt
 end

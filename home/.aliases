@@ -29,3 +29,8 @@ alias portupdate="sudo -s 'port selfupdate; port upgrade -cup outdated; port uni
 # Runs the theos nic utility
 alias nic="$THEOS/bin/nic.pl"
 
+# Better diff format
+alias diff="diff -u"
+
+# Verbose stat output
+alias stat="stat -x"
