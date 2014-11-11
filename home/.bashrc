@@ -20,3 +20,4 @@ function __prompt_command() {
 	export PS1
 }
 
+source ~/.aliases
