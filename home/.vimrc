@@ -16,6 +16,10 @@ set number
 
 set nowrap
 
+command W w
+command Q q
+command Wq wq
+command WQ wq
 cmap w!! exec 'w !sudo dd of=' . shellescape(expand('%'))
 
 colorscheme Tomorrow-Night-Bright

@@ -34,3 +34,6 @@ alias diff="diff -u"
 
 # Verbose stat output
 alias stat="stat -x"
+
+# Tabs > Windows
+alias mvim="mvim --remote-tab-silent"

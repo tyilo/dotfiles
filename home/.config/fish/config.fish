@@ -34,6 +34,8 @@ set fish_greeting ''
 
 set SIMBLpatches "$HOME/Library/Application Support/SIMBL/Plugins/SIMBLpatches.bundle/Contents/MacOS/SIMBLpatches"
 
+set -x IJVM_SPEC_FILE "$HOME/bin/ijvm.spec"
+
 stty werase undef
 bind \cw backward-kill-word
 
@@ -41,3 +43,4 @@ bind \cw backward-kill-word
 
 . ~/.config/fish/z.fish
 
+source "$HOME/.homesick/repos/homeshick/homeshick.fish"

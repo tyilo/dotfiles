@@ -21,3 +21,5 @@ function __prompt_command() {
 }
 
 source ~/.aliases
+
+source ~/.homesick/repos/homeshick/homeshick.sh
