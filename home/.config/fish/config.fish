@@ -42,5 +42,6 @@ bind \cw backward-kill-word
 . ~/.aliases
 
 . ~/.config/fish/z.fish
+. ~/.config/fish/gnupg.fish
 
 source "$HOME/.homesick/repos/homeshick/homeshick.fish"
