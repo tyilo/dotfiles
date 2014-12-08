@@ -1,0 +1,2 @@
+# Colors and use prefixes for file sizes
+alias ls='ls --color=auto --human-readable'

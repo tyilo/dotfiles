@@ -22,4 +22,13 @@ function __prompt_command() {
 
 source ~/.aliases
 
+case $(uname) in
+	Darwin)
+		. ~/.aliases.osx
+	;;
+	Linux)
+		. ~/.aliases.linux
+	;;
+esac
+
 source ~/.homesick/repos/homeshick/homeshick.sh

@@ -41,6 +41,13 @@ bind \cw backward-kill-word
 
 . ~/.aliases
 
+switch (uname)
+	case Darwin
+		. ~/.aliases.osx
+	case Linux
+		. ~/.aliases.linux
+end
+
 . ~/.config/fish/z.fish
 . ~/.config/fish/gnupg.fish
 

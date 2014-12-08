@@ -1,0 +1,14 @@
+# Colors and use prefixes for file sizes
+alias ls='ls -hG'
+
+# Updates MacPorts
+alias portupdate="sudo -s 'port selfupdate; port upgrade -cup outdated; port uninstall -cup inactive; while port uninstall -cup leaves; end;'"
+
+# Runs the theos nic utility
+alias nic="$THEOS/bin/nic.pl"
+
+# Verbose stat output
+alias stat="stat -x"
+
+# Tabs > Windows
+alias mvim="mvim --remote-tab-silent"

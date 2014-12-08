@@ -1,9 +1,6 @@
 # Don't follow symlinks
 alias file='file -h'
 
-# Colors and use prefixes for file sizes
-alias ls='ls -hG'
-
 # Colors
 alias tree='tree -C'
 
@@ -23,17 +20,5 @@ alias curl-cydia='curl --header "X-Machine: iPhone3,1" --header "X-Unique-ID: 88
 # Installs vim repository
 alias vim-install='rake -f ~/.vim/rakefile-vim-install'
 
-# Updates MacPorts
-alias portupdate="sudo -s 'port selfupdate; port upgrade -cup outdated; port uninstall -cup inactive; while port uninstall -cup leaves; end;'"
-
-# Runs the theos nic utility
-alias nic="$THEOS/bin/nic.pl"
-
 # Better diff format
 alias diff="diff -u"
-
-# Verbose stat output
-alias stat="stat -x"
-
-# Tabs > Windows
-alias mvim="mvim --remote-tab-silent"
