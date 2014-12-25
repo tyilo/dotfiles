@@ -22,6 +22,21 @@ command Wq wq
 command WQ wq
 cmap w!! exec 'w !sudo dd of=' . shellescape(expand('%'))
 
+set guifont=Anonymous\ Pro:h14
+
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'ogier/guessindent'
+Plugin 'dag/vim-fish'
+Plugin 'chriskempson/vim-tomorrow-theme'
+
+call vundle#end()
+filetype plugin indent on
+
 colorscheme Tomorrow-Night-Bright
 
 set clipboard=unnamed
@@ -43,8 +58,6 @@ if &term =~ "xterm.*"
     cmap <Esc>[201~ <nop>
 endif
 
-set guifont=Anonymous\ Pro:h14
-
 function! <SID>StripTrailingWhitespaces()
     let l = line(".")
     let c = col(".")
@@ -53,15 +66,3 @@ function! <SID>StripTrailingWhitespaces()
 endfun
 
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
-
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'gmarik/Vundle.vim'
-
-Plugin 'ogier/guessindent'
-Plugin 'dag/vim-fish'
-
-call vundle#end()
-filetype plugin indent on
