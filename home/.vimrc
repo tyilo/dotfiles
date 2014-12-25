@@ -53,3 +53,15 @@ function! <SID>StripTrailingWhitespaces()
 endfun
 
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'ogier/guessindent'
+Plugin 'dag/vim-fish'
+
+call vundle#end()
+filetype plugin indent on
