@@ -16,13 +16,15 @@ set number
 
 set nowrap
 
+let mapleader = ","
+
 command W w
 command Q q
 command Wq wq
 command WQ wq
 cmap w!! exec 'w !sudo dd of=' . shellescape(expand('%'))
 
-set guifont=Anonymous\ Pro:h14
+set guifont=Anonymous\ Pro\ for\ Powerline:h14
 
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -33,6 +35,16 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'ogier/guessindent'
 Plugin 'dag/vim-fish'
 Plugin 'chriskempson/vim-tomorrow-theme'
+
+Plugin 'tpope/vim-fugitive'
+Plugin 'ervandew/supertab'
+Plugin 'sjl/gundo.vim'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'vim-airline'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-surround'
 
 call vundle#end()
 filetype plugin indent on
@@ -66,3 +78,7 @@ function! <SID>StripTrailingWhitespaces()
 endfun
 
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+
+set laststatus=2
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
