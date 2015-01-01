@@ -4,17 +4,33 @@ endif
 
 syntax on
 
-set noexpandtab
+function! SetIndent()
+	let l:use_tabs = 1
+	let l:indent_width = 4
+	let l:tab_width = 4
+
+	if l:use_tabs
+		set noexpandtab
+		set softtabstop=0
+		let &shiftwidth = l:indent_width
+		let &tabstop = l:tab_width
+	else
+		set expandtab
+		let &softtabstop = l:indent_width
+		let &shiftwidth = l:indent_width
+		let &tabstop = l:tab_width
+	endif
+endfunction
+
+call SetIndent()
+
 set smartindent
 set autoindent
-set tabstop=4
-set shiftwidth=4
 
-set bs=2
+set backspace=2
 
 set number
-
-set nowrap
+set wrap
 
 let mapleader = ","
 
@@ -24,13 +40,17 @@ command Wq wq
 command WQ wq
 cmap w!! exec 'w !sudo dd of=' . shellescape(expand('%'))
 
-set guifont=Anonymous\ Pro\ for\ Powerline:h14
+set guifont=Anonymous\ Pro:h14
 
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
+
+Plugin 'Tyilo/logos.vim'
+Plugin 'Tyilo/applescript.vim'
+Plugin 'Tyilo/cycript.vim'
 
 Plugin 'ogier/guessindent'
 Plugin 'dag/vim-fish'
@@ -40,13 +60,14 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'ervandew/supertab'
 Plugin 'sjl/gundo.vim'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'vim-airline'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
+Plugin 'itchyny/lightline.vim'
 
 call vundle#end()
+
 filetype plugin indent on
 
 colorscheme Tomorrow-Night-Bright
@@ -57,28 +78,26 @@ let g:guessindent_prefer_tabs = 1
 autocmd BufReadPost * :GuessIndent
 
 if &term =~ "xterm.*"
-    let &t_ti = &t_ti . "\e[?2004h"
-    let &t_te = "\e[?2004l" . &t_te
-    function XTermPasteBegin(ret)
-        set pastetoggle=<Esc>[201~
-        set paste
-        return a:ret
-    endfunction
-    map <expr> <Esc>[200~ XTermPasteBegin("i")
-    imap <expr> <Esc>[200~ XTermPasteBegin("")
-    cmap <Esc>[200~ <nop>
-    cmap <Esc>[201~ <nop>
+	let &t_ti = &t_ti . "\e[?2004h"
+	let &t_te = "\e[?2004l" . &t_te
+	function XTermPasteBegin(ret)
+		set pastetoggle=<Esc>[201~
+		set paste
+		return a:ret
+	endfunction
+	map <expr> <Esc>[200~ XTermPasteBegin("i")
+	imap <expr> <Esc>[200~ XTermPasteBegin("")
+	cmap <Esc>[200~ <nop>
+	cmap <Esc>[201~ <nop>
 endif
 
 function! <SID>StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
+	let l = line(".")
+	let c = col(".")
+	%s/\s\+$//e
+	call cursor(l, c)
 endfun
 
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 set laststatus=2
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
