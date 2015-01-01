@@ -1,3 +1,7 @@
+function setenv() {
+	export "$1=$2"
+}
+
 export PROMPT_COMMAND=__prompt_command
 
 function __prompt_command() {
@@ -24,11 +28,15 @@ source ~/.aliases
 
 case $(uname) in
 	Darwin)
-		. ~/.aliases.osx
+		source ~/.aliases.osx
+		source ~/.env.osx
 	;;
 	Linux)
-		. ~/.aliases.linux
+		source ~/.aliases.linux
+		source ~/.env.linux
 	;;
 esac
+
+source ~/.env
 
 source ~/.homesick/repos/homeshick/homeshick.sh
