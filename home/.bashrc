@@ -24,19 +24,26 @@ function __prompt_command() {
 	export PS1
 }
 
-source ~/.aliases
 
 case $(uname) in
 	Darwin)
-		source ~/.aliases.osx
 		source ~/.env.osx
 	;;
 	Linux)
-		source ~/.aliases.linux
 		source ~/.env.linux
 	;;
 esac
 
 source ~/.env
+source ~/.aliases
+
+case $(uname) in
+	Darwin)
+		source ~/.aliases.osx
+	;;
+	Linux)
+		source ~/.aliases.linux
+	;;
+esac
 
 source ~/.homesick/repos/homeshick/homeshick.sh

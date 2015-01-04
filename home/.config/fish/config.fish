@@ -16,20 +16,24 @@ set fish_greeting ''
 stty werase undef
 bind \cw backward-kill-word
 
+switch (uname)
+	case Darwin
+		source ~/.env.osx
+	case Linux
+		source ~/.env.linux
+end
+
+source ~/.env
 source ~/.aliases
 
 switch (uname)
 	case Darwin
 		source ~/.aliases.osx
-		source ~/.env.osx
 	case Linux
 		source ~/.aliases.linux
-		source ~/.env.linux
 end
 
-source ~/.env
-
 source ~/.config/fish/z.fish
-source ~/.config/fish/gnupg.fish
+# source ~/.config/fish/gnupg.fish
 
 source "$HOME/.homesick/repos/homeshick/homeshick.fish"
