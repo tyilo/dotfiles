@@ -18,19 +18,26 @@ bind \cw backward-kill-word
 
 switch (uname)
 	case Darwin
-		source ~/.env.osx
+		switch (uname -m)
+			case 'iPhone*'
+				set _osname 'ios'
+			case '*'
+				set _osname 'osx'
+		end
 	case Linux
-		source ~/.env.linux
+		set _osname 'linux'
+end
+
+if [ -n "$_osname" ]
+	source ~/.env."$_osname"
 end
 
 source ~/.env
 source ~/.aliases
 
-switch (uname)
-	case Darwin
-		source ~/.aliases.osx
-	case Linux
-		source ~/.aliases.linux
+
+if [ -n "$_osname" ]
+	source ~/.aliases."$_osname"
 end
 
 source ~/.config/fish/z.fish

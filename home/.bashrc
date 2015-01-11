@@ -31,26 +31,31 @@ function __prompt_command() {
 	export PS1
 }
 
-
 case $(uname) in
 	Darwin)
-		source ~/.env.osx
+		case $(uname -m) in
+			iPhone*)
+				_osname='ios'
+			;;
+			*)
+				_osname='osx'
+			;;
+		esac
 	;;
 	Linux)
-		source ~/.env.linux
+		_osname='linux'
 	;;
 esac
+
+if [[ -n $_osname ]]; then
+	source ~/.env."$_osname"
+fi
 
 source ~/.env
 source ~/.aliases
 
-case $(uname) in
-	Darwin)
-		source ~/.aliases.osx
-	;;
-	Linux)
-		source ~/.aliases.linux
-	;;
-esac
+if [[ -n $_osname ]]; then
+	source ~/.aliases."$_osname"
+fi
 
 source ~/.homesick/repos/homeshick/homeshick.sh
