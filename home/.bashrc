@@ -19,8 +19,15 @@ function __prompt_command() {
 	fi
 
 	PS1="$PS1$blue\u$reset:"
-	PS1="$PS1$green\w$reset"
-	PS1="$PS1 $ "
+	PS1="$PS1$green\w$reset "
+
+	if [[ $USER == root ]]; then
+		PS1="$PS1$red#$reset"
+	else
+		PS1="$PS1$"
+	fi
+
+	PS1="$PS1 "
 	export PS1
 }
 
