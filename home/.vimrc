@@ -56,6 +56,7 @@ Plugin 'ogier/guessindent'
 Plugin 'dag/vim-fish'
 Plugin 'chriskempson/vim-tomorrow-theme'
 
+Plugin 'editorconfig/editorconfig-vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'ervandew/supertab'
 Plugin 'sjl/gundo.vim'
