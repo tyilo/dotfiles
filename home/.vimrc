@@ -78,6 +78,8 @@ set clipboard=unnamed
 let g:guessindent_prefer_tabs = 1
 autocmd BufReadPost * :GuessIndent
 
+let g:syntastic_cpp_compiler_options = '-std=c++11'
+
 if &term =~ "xterm.*"
 	let &t_ti = &t_ti . "\e[?2004h"
 	let &t_te = "\e[?2004l" . &t_te
