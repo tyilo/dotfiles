@@ -40,7 +40,6 @@ if [ -n "$_osname" ]
 	source ~/.aliases."$_osname"
 end
 
-source ~/.config/fish/z.fish
 # source ~/.config/fish/gnupg.fish
 
 source "$HOME/.homesick/repos/homeshick/homeshick.fish"
