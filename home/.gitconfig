@@ -5,7 +5,7 @@
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	g = grep --break --heading --line-number
 	clone-branches = "! git branch -a | sed -n \"/\\/HEAD /d; /\\/master$/d; /remotes/p;\" | xargs -L1 git checkout -t; git checkout master"
-	add-fork = "! git config --get remote.origin.url | sed -E 's/(github.com\\/)[^\\/]*\\//\\1Tyilo\\//' | xargs git remote add fork"
+	add-fork = "! git config --get remote.origin.url | sed -E 's/^.*(github.com\\/)[^\\/]*\\//https:\\/\\/\\1Tyilo\\//' | xargs git remote add fork"
 	log-diff = log --full-diff -p
 [push]
 	default = current
