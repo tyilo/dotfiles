@@ -19,3 +19,6 @@ alias curl-cydia='curl --header "X-Machine: iPhone3,1" --header "X-Unique-ID: 88
 
 # Better diff format
 alias diff="diff -u"
+
+# No invalid sequences
+alias sed="env LC_ALL=C sed"
