@@ -1,3 +1,3 @@
 function gitjk
-	history | head -10 | gitjk_cmd $argv; 
+	history | sed 's/hub/git/' | head -10 | gitjk_cmd $argv;
 end

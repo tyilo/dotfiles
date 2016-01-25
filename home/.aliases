@@ -18,7 +18,7 @@ alias serve='python -m SimpleHTTPServer'
 alias curl-cydia='curl --header "X-Machine: iPhone3,1" --header "X-Unique-ID: 8843d7f92416211de9ebb963ff4ce28125932878" --header "X-Firmware: 6.1" --header "User-Agent: Telesphoreo APT-HTTP/1.0.592"'
 
 # Better diff format
-alias diff="diff -u"
+alias diff="colordiff -u"
 
 # No invalid sequences
-alias sed="env LC_ALL=C sed"
+alias sed="env LANG=C sed"

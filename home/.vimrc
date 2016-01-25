@@ -4,25 +4,38 @@ endif
 
 syntax on
 
-function! SetIndent()
-	let l:use_tabs = 1
-	let l:indent_width = 4
-	let l:tab_width = 4
-
-	if l:use_tabs
+function! SetIndent(use_tabs, width)
+	if a:use_tabs
 		set noexpandtab
 		set softtabstop=0
-		let &shiftwidth = l:indent_width
-		let &tabstop = l:tab_width
+		let &shiftwidth = a:width
+		let &tabstop = a:width
 	else
 		set expandtab
-		let &softtabstop = l:indent_width
-		let &shiftwidth = l:indent_width
-		let &tabstop = l:tab_width
+		let &softtabstop = a:width
+		let &shiftwidth = a:width
+		let &tabstop = a:width
 	endif
 endfunction
 
-call SetIndent()
+command! -nargs=* SetIndent call SetIndent(<f-args>)
+
+function! SetDefaultIndent()
+	call SetIndent(1, 4)
+endfunction
+
+call SetDefaultIndent()
+
+function! SetExecutableBit()
+	let fname = expand("%:p")
+	checktime
+	execute "au FileChangedShell " . fname . " :echo"
+	silent !chmod a+x %
+	checktime
+	execute "au! FileChangedShell " . fname
+endfunction
+command! Xbit call SetExecutableBit()
+command! ChmodX call SetExecutableBit()
 
 set smartindent
 set autoindent
@@ -78,7 +91,13 @@ set clipboard=unnamed
 let g:guessindent_prefer_tabs = 1
 autocmd BufReadPost * :GuessIndent
 
+let g:syntastic_check_on_wq = 0
+
 let g:syntastic_cpp_compiler_options = '-std=c++11'
+let g:syntastic_c_include_dirs = [expand('~/includes')]
+let g:syntastic_cpp_include_dirs = [expand('~/includes')]
+
+let g:syntastic_python_python_exec = 'python'
 
 if &term =~ "xterm.*"
 	let &t_ti = &t_ti . "\e[?2004h"

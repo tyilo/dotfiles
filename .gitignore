@@ -1,5 +1,10 @@
 .DS_Store
 home/.vim/.netrwhist
+home/.vim/plugged
+
+home/.config/nvim/.netrwhist
+home/.config/nvim/.init.vim-rplugin~
+home/.config/nvim/autoload/plug.vim
 
 home/.vim/bundle/*
 !home/.vim/bundle/Vundle.vim

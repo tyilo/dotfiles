@@ -10,5 +10,11 @@ alias nic="$THEOS/bin/nic.pl"
 # Verbose stat output
 alias stat="stat -x"
 
-# Tabs > Windows
-alias mvim="mvim --remote-tab-silent"
+# Hub for Git
+alias git='hub'
+
+alias mview="open -a MachOView"
+
+alias flush_dns="sudo killall -HUP mDNSResponder"
+
+alias academy="java -jar ~/Desktop/Academy_*.jar"

@@ -8,6 +8,10 @@ function setenv
 	end
 end
 
+function source_aliases
+	sed 's/alias \([^=]*\)=/abbr -a \1 /g' $argv[1] | source
+end
+
 ## Remove duplicated
 # set -x PATH (echo $PATH | tr ' ' '\n' | nl | sort -u -k2 | sort -n | cut -f2-)
 
@@ -33,11 +37,17 @@ if [ -n "$_osname" ]
 end
 
 source ~/.env
-source ~/.aliases
+source_aliases ~/.aliases
 
 
 if [ -n "$_osname" ]
-	source ~/.aliases."$_osname"
+	source_aliases ~/.aliases."$_osname"
 end
 
 source "$HOME/.homesick/repos/homeshick/homeshick.fish"
+
+source /Users/Tyilo/.iterm2_shell_integration.fish
+
+complete --command hub --wraps git
+
+eval (python -m virtualfish auto_activation)

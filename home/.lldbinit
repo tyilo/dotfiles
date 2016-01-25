@@ -1,7 +1,7 @@
 settings set target.x86-disassembly-flavor intel
 settings set plugin.process.gdb-remote.target-definition-file /Library/Python/2.7/site-packages/x86_64_target_definition.py
 
-command alias load_sym_scripts settings set target.load-script-from-symbol-file true
+#command script import /Library/Python/2.7/site-packages/voltron-0.1-py2.7.egg/dbgentry.py
 
 #command script import lldbinit
 #command script import jump
