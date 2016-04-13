@@ -22,3 +22,9 @@ alias diff="colordiff -u"
 
 # No invalid sequences
 alias sed="env LANG=C sed"
+
+# Suppress startup message
+alias r="r -q"
+
+# Flush dns
+alias flush_dns="sudo killall -HUP mDNSResponder"

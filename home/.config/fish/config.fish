@@ -12,6 +12,11 @@ function source_aliases
 	sed 's/alias \([^=]*\)=/abbr -a \1 /g' $argv[1] | source
 end
 
+# Fix syncing of history
+function save_history --on-event fish_preexec
+    history --save
+end
+
 ## Remove duplicated
 # set -x PATH (echo $PATH | tr ' ' '\n' | nl | sort -u -k2 | sort -n | cut -f2-)
 

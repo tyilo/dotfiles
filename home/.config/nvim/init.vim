@@ -49,6 +49,7 @@ colorscheme Tomorrow-Night-Bright
 let g:deoplete#enable_at_startup = 1
 
 let g:neomake_cpp_clang_args = ["-std=c++11", "-Wextra", "-Wall"]
+let g:neomake_python_enabled_makers = ["pyflakes"]
 autocmd! BufWritePost * Neomake
 
 let g:guessindent_prefer_tabs = 1
