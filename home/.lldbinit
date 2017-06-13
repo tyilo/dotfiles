@@ -1,4 +1,4 @@
-settings set target.x86-disassembly-flavor intel
+settings set target.x86-disassembly-flavor att
 settings set plugin.process.gdb-remote.target-definition-file /Library/Python/2.7/site-packages/x86_64_target_definition.py
 
 #command script import /Library/Python/2.7/site-packages/voltron-0.1-py2.7.egg/dbgentry.py

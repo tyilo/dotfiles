@@ -17,4 +17,4 @@ alias mview="open -a MachOView"
 
 alias flush_dns="sudo killall -HUP mDNSResponder"
 
-alias academy="java -jar ~/Desktop/Academy_*.jar"
+alias academy="java -jar ~/academy/Academy_*.jar"

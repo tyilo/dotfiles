@@ -11,7 +11,7 @@ alias grep='grep -a'
 alias http='http -f'
 
 # Start a simple HTTP server
-alias serve='python -m SimpleHTTPServer'
+alias serve='python3 -m http.server'
 
 # Make a request like cydia would
 # Note: This is a fake UDID:
@@ -28,3 +28,5 @@ alias r="r -q"
 
 # Flush dns
 alias flush_dns="sudo killall -HUP mDNSResponder"
+
+alias sml="rlwrap sml"

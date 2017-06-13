@@ -29,6 +29,8 @@ function fish_prompt
 		set prompt $prompt(set_color 777)'['(basename "$VIRTUAL_ENV")']'(set_color normal)' '
 	end
 
+	set prompt $prompt(set_color normal)'('$CMD_DURATION' ms) '
+
 	if test "$USER" = root
 		set prompt $prompt(set_color red)'#'
 	else
