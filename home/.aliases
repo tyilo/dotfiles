@@ -5,7 +5,7 @@ alias file='file -h'
 alias tree='tree -C'
 
 # Show output in binary files
-alias grep='grep -a'
+alias grep='grep --color=auto -a'
 
 # Make HTTPie send parameters as a form instead of JSON
 alias http='http -f'
@@ -26,7 +26,5 @@ alias sed="env LANG=C sed"
 # Suppress startup message
 alias r="r -q"
 
-# Flush dns
-alias flush_dns="sudo killall -HUP mDNSResponder"
-
+# Arrow keys in sml REPL
 alias sml="rlwrap sml"

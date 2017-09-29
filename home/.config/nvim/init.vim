@@ -1,7 +1,6 @@
-let g:python_host_prog = "/usr/local/bin/python2"
-let g:python3_host_prog = "/usr/local/bin/python3"
+let g:python3_host_prog = "/usr/bin/python3"
 
-let g:clang_library_path = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib"
+let g:clang_library_path = "/usr/lib"
 
 call plug#begin('~/.vim/plugged')
 
@@ -23,6 +22,7 @@ Plug 'Mortal/clang_complete', { 'branch': 'follow_reference' }
 
 Plug 'rust-lang/rust.vim'
 Plug 'cypok/vim-sml'
+Plug 'petRUShka/vim-sage'
 
 " This overrides my builtin default indent :/
 "Plug 'Superbil/llvm.vim'

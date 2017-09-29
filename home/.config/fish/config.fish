@@ -51,8 +51,9 @@ end
 
 source "$HOME/.homesick/repos/homeshick/homeshick.fish"
 
-source /Users/Tyilo/.iterm2_shell_integration.fish
-
 complete --command hub --wraps git
 
 eval (python -m virtualfish auto_activation)
+
+# OPAM configuration
+# . /home/tyilo/.opam/opam-init/init.fish > /dev/null 2> /dev/null or true
