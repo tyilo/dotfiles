@@ -1,0 +1,12 @@
+#!/bin/bash
+if [[ $(id -u) == 0 ]]; then
+	echo "You probably don't want to run chownme with sudo"
+fi
+
+args="$(id -u):$(id -g)"
+if [[ $1 == "-R" ]]; then
+	shift
+	sudo chown -R "$args" "$@"
+else
+	sudo chown "$args" "$@"
+fi

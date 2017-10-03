@@ -1,0 +1,20 @@
+#!/bin/bash
+if [ $# != 2 ]; then
+	echo 'Usage: swap file1 file2'
+	exit 1
+fi
+
+if [ ! -e "$1" ]; then
+	echo "File doesn't exist: $1"
+	exit 1
+fi
+
+if [ ! -e "$2" ]; then
+	echo "File doesn't exist: $2"
+	exit 1
+fi
+
+tmp="/tmp/swap-tmp"
+mv "$1" "$tmp"
+mv "$2" "$1"
+mv "$tmp" "$2"

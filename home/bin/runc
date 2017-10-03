@@ -1,0 +1,23 @@
+#!/bin/bash
+tmp="/tmp/runc-tmp"
+mkdir -p "$tmp"
+cd "$tmp"
+f="$tmp/main.cpp"
+
+if [[ $# == 0 ]]; then
+	cat > "$f"
+else
+	cp "$1" "$tmp/main.cpp"
+fi
+
+{
+	echo '#include <bits/stdc++.h>'
+	echo 'using namespace std;'
+} | cat - "$f" | sponge "$f"
+
+echo "Compiling..."
+
+g++ "$f"
+./a.out
+cd
+rm -rf "$tmp"

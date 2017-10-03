@@ -1,0 +1,31 @@
+#!/usr/bin/env python
+import sys
+import requests
+import lxml.html
+from pathlib import Path
+import subprocess
+import string
+
+EULER_DIR = '/home/tyilo/Dropbox/Groups/asger+oskar/kattis/asg/projecteuler'
+
+n = int(sys.argv[1])
+
+r = requests.get(f'https://projecteuler.net/problem={n}')
+
+assert r.ok
+
+doc = lxml.html.fromstring(r.content)
+title_els = doc.cssselect('h2')
+assert len(title_els) == 1
+
+title = title_els[0].text
+normalized_title = ''.join(filter(lambda c: c in string.ascii_letters + string.digits + ' -', title.lower().replace(' ', '-')))
+
+filename = f'{n:03}-{normalized_title}.py'
+path = f'{EULER_DIR}/{filename}'
+
+if not Path(path).exists():
+	Path(path).touch()
+	print(f'Created {filename}')
+
+subprocess.run(f'$EDITOR {path}', shell=True)

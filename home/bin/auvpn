@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# server[/group]
+SERVER=https://remote.au.dk/AU-ACCESS
+# VPN username
+USERNAME=au522953@uni.au.dk
+
+SOCKS_PORT=9052
+
+keyring get auprint auid | \
+/usr/sbin/openconnect \
+	--reconnect-timeout 60 \
+	--script-tun \
+	--script "ocproxy -D $SOCKS_PORT" \
+	-u "$USERNAME" \
+	--passwd-on-stdin \
+	"$SERVER"

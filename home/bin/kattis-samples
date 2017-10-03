@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+import os
+import sys
+import requests
+from pyquery import PyQuery as pq
+
+def get_samples(problem_id):
+	response = requests.get('https://open.kattis.com/problems/%s' % problem_id)
+	if response.status_code != 200:
+		raise Exception('Problem with id "%s" not found!' % problem_id)
+
+	d = pq(response.content)
+
+	samples = []
+	for t in d('.sample'):
+		samples.append([el.text.lstrip() for el in d(t)('pre')])
+
+	return samples
+
+os.makedirs('samples', exist_ok=True)
+
+p = sys.argv[1]
+for i, (inp, outp) in enumerate(get_samples(p)):
+	with open('samples/%s-%s.in' % (p, i + 1), 'w') as f:
+		f.write(inp)
+	with open('samples/%s-%s.out' % (p, i + 1), 'w') as f:
+		f.write(outp)

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+out=a.out
+
+for arg in "$@"; do
+	if [[ $arg == *.cpp ]]; then
+		out=${arg%.cpp}
+		break
+	fi
+done
+
+g++ -Wall -Wconversion -Wfatal-errors -g -std=gnu++11 \
+	-fsanitize=undefined "$@" -o "$out"

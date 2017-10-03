@@ -1,0 +1,25 @@
+#!/Applications/Mathematica.app/Contents/MacOS/MathKernel -script
+
+(* Convert Mathematica notebooks to PDFs                              *)
+(*   usage: nb2pdf file1.nb file2.nb etc...                           *)
+(* outputs: file1.pdf file2.pdf etc...  into the current directoy     *)
+(* If called with no filenames, this script                           *)
+(*    will convert all notebook files in the current directory        *)
+
+dir = Directory[];
+files = {};
+expandNb = False; (* Expand all cell groups in the Notebook *)
+
+If[Length[$ScriptCommandLine] > 1,
+  Do[If[FileExistsQ[file],
+    AppendTo[files, file],
+    Print["File " <> file <> " does not exist"]],
+    {file, Rest[$ScriptCommandLine]}],
+  files = FileNames["*.nb"]];
+
+With[{UFE = UsingFrontEnd},
+ Do[nb = UFE@NotebookOpen[FileNameJoin[{dir, file}]];
+  If[expandNb, UFE@SelectionMove[nb, All, Notebook];
+               UFE@FrontEndExecute[FrontEndToken["SelectionOpenAllGroups"]]];
+  UFE@NotebookPrint[nb, FileNameJoin[{dir, FileBaseName[file]<>".pdf"}]];
+  UFE@NotebookClose[nb], {file, files}]]
