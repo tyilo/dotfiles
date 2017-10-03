@@ -9,7 +9,8 @@ function setenv
 end
 
 function source_aliases
-	sed 's/alias \([^=]*\)=/abbr -a \1 /g' $argv[1] | source
+	# sed 's/alias \([^=]*\)=/abbr -a \1 /g' $argv[1] | source
+	source < $argv[1]
 end
 
 # Fix syncing of history
