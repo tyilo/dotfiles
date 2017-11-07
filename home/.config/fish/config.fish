@@ -21,8 +21,6 @@ end
 ## Remove duplicated
 # set -x PATH (echo $PATH | tr ' ' '\n' | nl | sort -u -k2 | sort -n | cut -f2-)
 
-set fish_greeting ''
-
 stty werase undef
 bind \cw backward-kill-word
 
@@ -51,10 +49,13 @@ if [ -n "$_osname" ]
 end
 
 source "$HOME/.homesick/repos/homeshick/homeshick.fish"
+homeshick --quiet refresh
 
 complete --command hub --wraps git
 
-eval (python -m virtualfish auto_activation)
-
-# OPAM configuration
-# . /home/tyilo/.opam/opam-init/init.fish > /dev/null 2> /dev/null or true
+# bobthefish config
+# https://github.com/oh-my-fish/theme-bobthefish
+set -g theme_display_vagrant yes
+set -g theme_display_date no
+set -g theme_show_exit_status yes
+set -g theme_nerd_fonts yes
