@@ -53,51 +53,9 @@ command Wq wq
 command WQ wq
 cmap w!! exec 'w !sudo dd of=' . shellescape(expand('%'))
 
-set guifont=Anonymous\ Pro:h14
-
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'gmarik/Vundle.vim'
-
-Plugin 'Tyilo/logos.vim'
-Plugin 'Tyilo/applescript.vim'
-Plugin 'Tyilo/cycript.vim'
-
-Plugin 'ogier/guessindent'
-Plugin 'dag/vim-fish'
-Plugin 'chriskempson/vim-tomorrow-theme'
-
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'ervandew/supertab'
-Plugin 'sjl/gundo.vim'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-surround'
-Plugin 'itchyny/lightline.vim'
-
-call vundle#end()
-
 filetype plugin indent on
 
-colorscheme Tomorrow-Night-Bright
-
 set clipboard=unnamed
-
-let g:guessindent_prefer_tabs = 1
-autocmd BufReadPost * :GuessIndent
-
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_cpp_compiler_options = '-std=c++11'
-let g:syntastic_c_include_dirs = [expand('~/includes')]
-let g:syntastic_cpp_include_dirs = [expand('~/includes')]
-
-let g:syntastic_python_python_exec = 'python'
 
 if &term =~ "xterm.*"
 	let &t_ti = &t_ti . "\e[?2004h"
