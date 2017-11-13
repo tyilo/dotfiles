@@ -1,0 +1,29 @@
+#!/usr/bin/env python
+import re
+import fileinput
+
+def guess_python_version(lines):
+    python2 = re.compile(r'^\s*\bprint\b *[^ \(\),\]]|\braw_input\b')
+
+    first = True
+    for l in lines:
+        if first and l.startswith('#!'):
+            if l.find('python2') != -1:
+                return '2'
+            if l.find('python3') != -1:
+                return '3'
+
+        if python2.search(l):
+            return '2'
+
+        first = False
+
+    return None
+
+
+if __name__ == '__main__':
+    version = guess_python_version(fileinput.input())
+    if version == None:
+        version = '3'
+
+    print(version)

@@ -1,0 +1,21 @@
+#!/bin/bash
+# This is a wrapper script to make w0rp/ale work with pyflakes
+# thinking this is actually flake8
+
+for arg in "$@"; do
+	if [[ $arg == --version ]]; then
+		python3 -mpyflakes --version
+		exit
+	elif [[ $arg == --format=* ]] || [[ $arg == - ]]; then
+		# Ignore
+		:
+	else
+		echo "Unexpected argument: $arg"
+		exit 1
+	fi
+done
+
+input=$(cat)
+version=$(guesspython <<< "$input")
+
+"python${version}" -mpyflakes <<< "$input" 2>&1 | awk '/<stdin>/ { printf "%s", $1" F"; $1=""; print $0 }'

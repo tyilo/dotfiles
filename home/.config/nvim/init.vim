@@ -69,9 +69,12 @@ colorscheme Tomorrow-Night-Bright
 
 let g:deoplete#enable_at_startup = 1
 
-let g:ale_python_flake8_args = "--ignore W191,E711,E501"
+let g:ale_python_flake8_executable = "pyflakes_wrapper"
 
-let g:ale_linters = {'cpp': ['clangtidy']}
+let g:ale_linters = {
+\	'cpp': ['clang'],
+\	'python': ['flake8'],
+\}
 
 let g:guessindent_prefer_tabs = 1
 autocmd BufReadPost * :GuessIndent
