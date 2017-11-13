@@ -1,0 +1,10 @@
+#!/usr/bin/expect --
+spawn -noecho /usr/bin/cling "$argv"
+expect {
+	{\[cling\]\$ } {
+		send "#include <bits/stdc++.h>\r"
+		send "using namespace std;\r"
+		interact
+	}
+	eof
+}
