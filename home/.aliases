@@ -28,3 +28,6 @@ alias r="r -q"
 
 # Arrow keys in sml REPL
 alias sml="rlwrap sml"
+
+# Default to CLI mode
+alias emacs="emacs -nw"
