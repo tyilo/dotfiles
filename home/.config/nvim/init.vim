@@ -8,6 +8,9 @@ Plug 'Tyilo/logos.vim'
 Plug 'Tyilo/applescript.vim'
 Plug 'Tyilo/cycript.vim'
 
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-eunuch'
+
 Plug 'bogado/file-line'
 Plug 'thirtythreeforty/lessspace.vim'
 Plug 'ogier/guessindent'
@@ -23,6 +26,7 @@ Plug 'Mortal/clang_complete', { 'branch': 'follow_reference' }
 Plug 'rust-lang/rust.vim'
 Plug 'cypok/vim-sml'
 Plug 'petRUShka/vim-sage'
+Plug 'udalov/kotlin-vim'
 
 " This overrides my builtin default indent :/
 "Plug 'Superbil/llvm.vim'
@@ -44,8 +48,6 @@ function! SetDefaultIndent()
 endfunction
 
 call SetDefaultIndent()
-
-filetype plugin indent on
 
 set number
 set wrap
@@ -69,10 +71,11 @@ colorscheme Tomorrow-Night-Bright
 
 let g:deoplete#enable_at_startup = 1
 
+let g:ale_lint_on_text_changed = 'never'
 let g:ale_python_flake8_executable = "pyflakes_wrapper"
 
 let g:ale_linters = {
-\	'cpp': ['clang'],
+\	'cpp': [],
 \	'python': ['flake8'],
 \}
 
