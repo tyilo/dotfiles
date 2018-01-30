@@ -18,4 +18,13 @@ done
 input=$(cat)
 version=$(guesspython <<< "$input")
 
-"python${version}" -mpyflakes <<< "$input" 2>&1 | awk '/<stdin>/ { printf "%s", $1" F"; $1=""; print $0 }'
+awkprog=$(cat <<'END'
+/stdin/ &&
+!/imported but unused/ &&
+!/used; unable to detect undefined names/ &&
+!/may be undefined, or defined from star imports: / \
+{ printf "%s", $1" F"; $1=""; print $0 }
+END
+)
+
+"python${version}" -mpyflakes <<< "$input" 2>&1 | awk "$awkprog"

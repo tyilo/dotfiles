@@ -1,0 +1,35 @@
+#!/usr/bin/env python
+import argparse
+import sys
+from subprocess import check_call
+from tempfile import NamedTemporaryFile
+
+parser = argparse.ArgumentParser(description='Convert list of edges to graphviz format')
+parser.add_argument('-u', '--undirected', action='store_true', help='Create an undirected graph')
+parser.add_argument('-p', '--preview', action='store_true', help='Automatically preview with xdot')
+
+args = parser.parse_args()
+
+if args.undirected:
+	graph = 'graph'
+	arrow = '--'
+else:
+	graph = 'digraph'
+	arrow = '->'
+
+if args.preview:
+	f = NamedTemporaryFile('w', encoding='utf-8')
+else:
+	f = sys.stdout
+
+print('%s adj2dot_graph {' % graph, file=f)
+for l in sys.stdin:
+	i, j, *label = l.strip().split()
+	print('  %s %s %s [label="%s"];' % (i, arrow, j, ' '.join(label)), file=f)
+
+print('}', file=f)
+
+if args.preview:
+	f.flush()
+	check_call(['xdot', f.name])
+	f.close()

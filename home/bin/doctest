@@ -1,0 +1,18 @@
+#!/bin/bash
+tmpfiles=()
+args=()
+for arg in "$@"; do
+	if [[ -f $arg && ! ${arg:3} == *.py && $(file --mime --brief "$arg") == "text/x-python;"* ]]; then
+		tmpf=$(mktemp --tmpdir='.' '_doctestXXXXXXXXXX.py')
+		ln -sf "$arg" "$tmpf"
+		arg=$tmpf
+		tmpfiles+=("$tmpf")
+	fi
+	args+=("$arg")
+done
+
+python -mdoctest "${args[@]}"
+
+for f in "${tmpfiles[@]}"; do
+	rm -f "$f"
+done

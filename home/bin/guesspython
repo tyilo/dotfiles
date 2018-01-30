@@ -3,7 +3,7 @@ import re
 import fileinput
 
 def guess_python_version(lines):
-    python2 = re.compile(r'^\s*\bprint\b *[^ \(\),\]]|\braw_input\b')
+    python2 = re.compile(r'^\s*\bprint\b *[^ \(\),\]]|\braw_input\b|\bxrange\b')
 
     first = True
     for l in lines:

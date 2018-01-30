@@ -1,9 +1,9 @@
 #!/bin/bash
-if [ $# != 0 ]; then
+if [ $# != 1 ]; then
 	echo 'Usage: chmod_default path'
 	exit 1
 fi
+chown -R "$(id -u):$(id -g)" "$1"
 cd "$1"
-chown -R "$(id -u):$(id -g)" .
 find . -type d -exec chmod 755 '{}' ';'
 find . -type f -exec chmod 644 '{}' ';'
