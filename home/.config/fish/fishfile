@@ -3,5 +3,5 @@ oh-my-fish/theme-bobthefish
 oh-my-fish/plugin-errno
 laughedelic/fish_logo
 fisherman/getopts
-oh-my-fish/plugin-virtualfish
+fisherman/pipenv
 fisherman/z
