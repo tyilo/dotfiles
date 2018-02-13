@@ -28,10 +28,14 @@ Plug 'cypok/vim-sml'
 Plug 'petRUShka/vim-sage'
 Plug 'udalov/kotlin-vim'
 
+" Plug 'git://git.code.sf.net/p/atp-vim/code', { 'as': 'atp-vim' }
+
 " This overrides my builtin default indent :/
 "Plug 'Superbil/llvm.vim'
 
 call plug#end()
+
+" let b:atp_Viewer = "evince"
 
 let g:clang_make_default_keymappings = 0
 au FileType cpp nnoremap <buffer> <Leader>d :call g:ClangGotoDeclaration()<CR>
