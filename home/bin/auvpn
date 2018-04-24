@@ -7,11 +7,12 @@ USERNAME=au522953@uni.au.dk
 
 SOCKS_PORT=9052
 
-keyring get auprint auid | \
+pass show au | \
 /usr/sbin/openconnect \
 	--reconnect-timeout 60 \
 	--script-tun \
 	--script "ocproxy -D $SOCKS_PORT" \
 	-u "$USERNAME" \
 	--passwd-on-stdin \
-	"$SERVER"
+	"$SERVER" \
+	--servercert sha256:c131461ac8f287a8b2af6a5d887ddb568dc8a5d6dcd1c57c2552b2e979b2ea7b
