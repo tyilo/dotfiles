@@ -35,6 +35,10 @@ Plug 'udalov/kotlin-vim'
 
 call plug#end()
 
+augroup filetypedetect
+    au BufRead,BufNewFile *.jif setfiletype java
+augroup END
+
 " let b:atp_Viewer = "evince"
 
 let g:clang_make_default_keymappings = 0
