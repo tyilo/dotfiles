@@ -1,0 +1,34 @@
+#!/usr/bin/env python
+import re
+from pathlib import Path
+import shutil
+
+handins = map(lambda p: (int(re.search('\d+', p.name).group()), p), Path().glob('*/*.tex'))
+n, latest_path = max(handins)
+
+next_path = Path(str(latest_path).replace(str(n), str(n + 1)))
+next_path.parent.mkdir()
+
+with latest_path.open('r') as f_in:
+	with next_path.open('w') as f_out:
+		in_document = False
+		while True:
+			l = f_in.readline()
+			if l == '':
+				break
+
+			if not in_document:
+				if l == '\\begin{document}\n':
+					in_document = True
+					l += '\n\maketitle\n\n'
+				if l.startswith('\\title{'):
+					l = l.replace(str(n) + '}', str(n + 1) + '}')
+			else:
+				if l == '\\end{document}\n':
+					in_document = False
+				else:
+					continue
+
+			f_out.write(l)
+
+print('Created', next_path)
