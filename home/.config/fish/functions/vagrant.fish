@@ -14,6 +14,10 @@ if command -s vagrant
 			mkdir $dir
 		end
 
+		if test "$args[1]" = "down"
+			set args[1] halt
+		end
+
 		pushd $dir
 		command vagrant $args
 		popd
