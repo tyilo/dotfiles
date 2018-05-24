@@ -29,6 +29,8 @@ Plug 'cypok/vim-sml'
 Plug 'petRUShka/vim-sage'
 Plug 'udalov/kotlin-vim'
 
+Plug 'FStarLang/VimFStar', { 'for': 'fstar' }
+
 " Plug 'git://git.code.sf.net/p/atp-vim/code', { 'as': 'atp-vim' }
 
 " This overrides my builtin default indent :/
