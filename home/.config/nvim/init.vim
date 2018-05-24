@@ -10,6 +10,7 @@ Plug 'Tyilo/cycript.vim'
 
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-eunuch'
+Plug 'machakann/vim-highlightedyank'
 
 Plug 'bogado/file-line'
 Plug 'thirtythreeforty/lessspace.vim'
@@ -66,6 +67,8 @@ set undodir=$HOME/.vimundo
 set history=9999
 set undolevels=9999999999
 set undoreload=10000
+
+set inccommand=nosplit
 
 command W w
 command Q q
