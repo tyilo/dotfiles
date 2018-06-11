@@ -67,7 +67,7 @@ set undofile
 set undodir=$HOME/.vimundo
 
 set history=9999
-set undolevels=9999999999
+set undolevels=9999
 set undoreload=10000
 
 set inccommand=nosplit
