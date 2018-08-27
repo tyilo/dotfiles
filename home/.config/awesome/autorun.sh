@@ -1,23 +1,33 @@
 #!/usr/bin/env bash
 
 function run {
-  if ! pgrep $1 ;
-  then
-    $@&
+  if ! pgrep --full --ignore-case "$1" > /dev/null; then
+    "$@" &
   fi
 }
 
-run chromium
-run caprine
-run discord
-run thunderbird
+cmds=(
+# Programs with dedicated tabs
+"zeal"
+"caprine"
+"discord"
+"slack"
+"thunderbird"
 
-# Background
-run zeal
-run dropbox
-run copyq
-run albert
+# Chromium is nice to have running
+"chromium"
 
-run nm-applet
-run megasync
-run pasystray
+# Task bar programs
+"nm-applet"
+"pasystray"
+"megasync"
+"copyq"
+"albert"
+"udiskie --tray"
+"caffeine"
+"emoji-keyboard"
+)
+
+for cmd in "${cmds[@]}"; do
+  run $cmd
+done
