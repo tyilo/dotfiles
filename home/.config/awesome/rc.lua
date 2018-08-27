@@ -25,6 +25,15 @@ local ram_widget = require('awesome-wm-widgets.ram-widget.ram-widget')
 -- local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 local battery_widget = require('awesome-wm-widgets.battery-widget.battery')
 
+--[[
+local assault = require('assault.awesomewm.assault')
+local battery_widget = assault({
+    critical_level = 0.15,
+    critical_color = "#ff0000",
+    charging_color = "#00ff00"
+})
+]]
+
 local calendar = require("calendar")
 
 awful.util.shell = '/bin/bash'
@@ -238,7 +247,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6 Zeal", "7 Messenger", "8 Discord", "9 Mail" }, s, awful.layout.layouts[2])
+    awful.tag({ "1", "2", "3", "4", "5 Zeal", "6 Messenger", "7 Discord", "8 Slack", "9 Mail" }, s, awful.layout.layouts[2])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -432,6 +441,8 @@ globalkeys = gears.table.join(
 
      awful.key({ modkey }, "c", function() awful.spawn.with_shell("chromium") end,
               {description = "open chromium", group = "custom"}),
+     awful.key({ modkey }, "e", function() awful.spawn.with_shell("emoji-keyboard --toggle-search") end,
+              {description = "emoji-keyboard search", group = "custom"}),
 
       -- Volume Keys
       awful.key({}, "XF86AudioLowerVolume", function ()
@@ -624,11 +635,13 @@ awful.rules.rules = {
     --   properties = { screen = 1, tag = "2" } },
 
     { rule = { class = "Zeal" },
-      properties = { screen = 1, tag = "6 Zeal" } },
+      properties = { screen = 1, tag = "5 Zeal" } },
     { rule = { class = "Caprine" },
-      properties = { screen = 1, tag = "7 Messenger" } },
+      properties = { screen = 1, tag = "6 Messenger" } },
     { rule = { class = "discord" },
-      properties = { screen = 1, tag = "8 Discord" } },
+      properties = { screen = 1, tag = "7 Discord" } },
+    { rule = { class = "Slack" },
+      properties = { screen = 1, tag = "8 Slack" } },
     { rule = { class = "Thunderbird" },
       properties = { screen = 1, tag = "9 Mail" } },
 }
