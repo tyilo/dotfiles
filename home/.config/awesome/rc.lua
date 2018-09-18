@@ -67,6 +67,10 @@ end
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init("~/.config/awesome/themes/default/theme.lua")
 
+naughty.config.defaults['icon_size'] = 100
+-- Only works in awesome 4.3 or later:
+-- beautiful.notification_icon_size = 100
+
 -- This is used later as the default terminal and editor to run.
 terminal = "termite"
 editor = os.getenv("EDITOR") or "vim"
