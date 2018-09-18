@@ -25,6 +25,45 @@ local ram_widget = require('awesome-wm-widgets.ram-widget.ram-widget')
 -- local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 local battery_widget = require('awesome-wm-widgets.battery-widget.battery')
 
+local last_volume_id = nil
+local function show_volume()
+  local fd = io.popen("amixer sget Master")
+  local status = fd:read("*all")
+  fd:close()
+
+  local volume = tonumber(string.match(status, "(%d?%d?%d)%%"))
+  -- volume = string.format("% 3d", volume)
+
+  status = string.match(status, "%[(o[^%]]*)%]")
+
+  --[[
+  local args = status == "on" and volume or "-m"
+  awful.spawn("volnoti-show " .. args)
+  --]]
+
+  local total = 20
+  local ticks = volume / (100 / total)
+  local bar = string.rep("#", ticks) .. string.rep(" ", total - ticks)
+
+  if status == "on" then
+    text = "[" .. bar .. "]"
+  else
+    text = string.rep("M", total + 2)
+  end
+
+  local noti = naughty.notify({
+    text = text,
+    font = "monospace",
+    position = "top_middle",
+    replaces_id = last_volume_id,
+    timeout = 1,
+  })
+
+  if noti ~= nil then
+    last_volume_id = noti.id
+  end
+end
+
 --[[
 local assault = require('assault.awesomewm.assault')
 local battery_widget = assault({
@@ -451,12 +490,15 @@ globalkeys = gears.table.join(
       -- Volume Keys
       awful.key({}, "XF86AudioLowerVolume", function ()
         awful.util.spawn("amixer -q -D pulse sset Master unmute 5%-", false)
+        show_volume()
       end),
       awful.key({}, "XF86AudioRaiseVolume", function ()
         awful.util.spawn("amixer -q -D pulse sset Master unmute 5%+", false)
+        show_volume()
       end),
       awful.key({}, "XF86AudioMute", function ()
         awful.util.spawn("amixer -D pulse set Master +1 toggle", false)
+        show_volume()
       end),
       -- Media Keys
       awful.key({}, "XF86AudioPlay", function()
