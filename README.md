@@ -12,7 +12,8 @@ git clone git://github.com/andsens/homeshick.git ~/.homesick/repos/homeshick
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 nvim +PlugInstall
 
-# Install fisherman for fish
-curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher
-fisher
+# Install fundle for fish
+curl -fLo ~/.config/fish/functions/fundle.fish --create-dirs ~ https://git.io/fundle
+exec fish
+fundle install
 ```

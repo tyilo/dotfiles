@@ -1,3 +1,10 @@
+fundle plugin 'oh-my-fish/plugin-bang-bang'
+fundle plugin 'oh-my-fish/theme-bobthefish'
+fundle plugin 'oh-my-fish/plugin-errno'
+fundle plugin 'jethrokuan/z'
+
+fundle init
+
 function setenv
 	switch $argv[1]
 		case PATH MANPATH INFOPATH
