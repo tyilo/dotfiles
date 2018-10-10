@@ -1,2 +1,2 @@
 #!/bin/bash
-TERM=xterm-color /usr/bin/sbt "$@"
+TERM=xterm-color exec /usr/bin/sbt "$@"
