@@ -56,7 +56,6 @@ if [ -n "$_osname" ]
 end
 
 source "$HOME/.homesick/repos/homeshick/homeshick.fish"
-homeshick --quiet refresh
 
 complete --command hub --wraps git
 
