@@ -28,9 +28,6 @@ end
 ## Remove duplicated
 # set -x PATH (echo $PATH | tr ' ' '\n' | nl | sort -u -k2 | sort -n | cut -f2-)
 
-stty werase undef
-bind \cw backward-kill-word
-
 switch (uname)
 	case Darwin
 		switch (uname -m)
