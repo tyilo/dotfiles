@@ -395,7 +395,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, "Return",
     function ()
       if client.focus and client.focus.pid ~= nil then
-        awful.spawn.with_shell('cd /proc/$(pgrep -P ' .. client.focus.pid .. ')/cwd; ' .. terminal)
+        awful.spawn.with_shell('cd "$(readlink /proc/"$(pgrep -P ' .. client.focus.pid .. ')"/cwd)"; ' .. terminal)
       else
         awful.spawn(terminal)
       end
