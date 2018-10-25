@@ -13,7 +13,7 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.g
 nvim +PlugInstall
 
 # Install fundle for fish
-curl -fLo ~/.config/fish/functions/fundle.fish --create-dirs ~ https://git.io/fundle
+curl -fLo ~/.config/fish/functions/fundle.fish --create-dirs https://git.io/fundle
 exec fish
 fundle install
 ```
