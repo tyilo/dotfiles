@@ -7,6 +7,9 @@ function run {
 }
 
 cmds=(
+# Compositor
+"compton"
+
 # Programs with dedicated tabs
 "zeal"
 "caprine"
