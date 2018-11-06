@@ -1,0 +1,80 @@
+#!/usr/bin/env python3
+from argparse import ArgumentParser
+from subprocess import check_output, check_call
+from pathlib import Path
+
+CACHE_PATH = Path('/usr/share/applications/mimeinfo.cache')
+
+def get_mimetype(file):
+	return check_output(['xdg-mime', 'query', 'filetype', file], encoding='utf-8').strip()
+
+def get_all_applications(mimetype):
+	with CACHE_PATH.open() as f:
+		for line in f:
+			if '=' not in line: continue
+
+			mtype, applications = line.split('=', 1)
+			if mtype == mimetype:
+				return applications.strip(';\n').split(';')
+
+	return []
+
+def get_default_application(mimetype):
+	return check_output(['xdg-mime', 'query', 'default', mimetype], encoding='utf-8').strip()
+
+def set_default_application(mimetype, application):
+	check_call(['xdg-mime', 'default', application, mimetype])
+
+
+if __name__ == '__main__':
+	parser = ArgumentParser('mimedefault')
+	group = parser.add_mutually_exclusive_group()
+	group.add_argument('--mimetype', action='store_true')
+	group.add_argument('--file', action='store_true')
+
+	parser.add_argument('file_or_mimetype')
+
+	args = parser.parse_args()
+
+	is_file = args.file
+	if not args.mimetype and not args.file:
+		if Path(args.file_or_mimetype).exists():
+			is_file = True
+
+	if is_file:
+		mimetype = get_mimetype(args.file_or_mimetype)
+	else:
+		mimetype = args.file_or_mimetype
+
+	applications = get_all_applications(mimetype)
+	default_application = get_default_application(mimetype)
+
+	print(f'Applications known to support mimetype {mimetype}:')
+
+	for i, app in enumerate(applications):
+		suffix = ''
+		if app == default_application:
+			suffix = ' (default)'
+		print(f' {i + 1}: {app}{suffix}')
+
+	print()
+
+	while True:
+		try:
+			choice = input('Choose a new default: ')
+		except (KeyboardInterrupt, EOFError):
+			print()
+			raise SystemExit
+
+		try:
+			index = int(choice) - 1
+			new_default = applications[index]
+		except (ValueError, IndexError):
+			pass
+		else:
+			break
+
+	print()
+	print(f'New default: {new_default}')
+	set_default_application(mimetype, new_default)
+	
