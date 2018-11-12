@@ -57,6 +57,10 @@ function parse_jobs(str)
 end
 
 function display_string(jobs)
+	if #jobs == 0 then
+		return "No jobs"
+	end
+
 	local str = ""
 
 	for i, job in ipairs(jobs) do
@@ -87,6 +91,7 @@ printer_jobs_widget:connect_signal("mouse::enter", function()
 			text = display_string(last_jobs),
 			title = "Printer jobs",
 			timeout = -1, hover_timeout = 0.5,
+			min_width = 200,
 		}
 	end
 end)
