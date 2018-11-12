@@ -58,6 +58,8 @@ if __name__ == '__main__':
 		print(f' {i + 1}: {app}{suffix}')
 
 	print()
+	print(' o: Other application')
+	print()
 
 	while True:
 		try:
@@ -66,13 +68,17 @@ if __name__ == '__main__':
 			print()
 			raise SystemExit
 
-		try:
-			index = int(choice) - 1
-			new_default = applications[index]
-		except (ValueError, IndexError):
-			pass
-		else:
+		if choice.lower() == 'o':
+			new_default = input('Application name: ')
 			break
+		else:
+			try:
+				index = int(choice) - 1
+				new_default = applications[index]
+			except (ValueError, IndexError):
+				pass
+			else:
+				break
 
 	print()
 	print(f'New default: {new_default}')
