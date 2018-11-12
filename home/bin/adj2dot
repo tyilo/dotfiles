@@ -7,6 +7,7 @@ from tempfile import NamedTemporaryFile
 parser = argparse.ArgumentParser(description='Convert list of edges to graphviz format')
 parser.add_argument('-u', '--undirected', action='store_true', help='Create an undirected graph')
 parser.add_argument('-p', '--preview', action='store_true', help='Automatically preview with xdot')
+parser.add_argument('-m', '--matrix', action='store_true', help='Input is adjacency matrix instead of list')
 
 args = parser.parse_args()
 
@@ -22,10 +23,20 @@ if args.preview:
 else:
 	f = sys.stdout
 
+def print_edge(i, j, label=''):
+	print('  %s %s %s [label="%s"];' % (i, arrow, j, label), file=f)
+
 print('%s adj2dot_graph {' % graph, file=f)
-for l in sys.stdin:
-	i, j, *label = l.strip().split()
-	print('  %s %s %s [label="%s"];' % (i, arrow, j, ' '.join(label)), file=f)
+if args.matrix:
+	for i, l in enumerate(sys.stdin):
+		l = l.strip().split()
+		for j, c in enumerate(l):
+			if c == '1':
+				print_edge(i, j)
+else:
+	for l in sys.stdin:
+		i, j, *label = l.strip().split()
+		print_edge(i, j, ' '.join(label))
 
 print('}', file=f)
 
