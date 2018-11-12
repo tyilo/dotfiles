@@ -8,8 +8,14 @@ fundle init
 function setenv
 	switch $argv[1]
 		case PATH MANPATH INFOPATH
+			set -l paths
 			# Replace colons and spaces with newlines
-			set -gx $argv[1] (echo $argv[2] | /usr/bin/tr ': ' \n)
+			for path in (echo $argv[2] | /usr/bin/tr ': ' \n)
+				if [ -d "$path" ]
+					set paths $paths "$path"
+				end
+			end
+			set -gx $argv[1] $paths
  		case '*'
 			set -gx $argv
 	end
