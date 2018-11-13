@@ -12,6 +12,8 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-eunuch'
 Plug 'machakann/vim-highlightedyank'
 
+Plug 'lambdalisue/suda.vim'
+
 Plug 'bogado/file-line'
 Plug 'thirtythreeforty/lessspace.vim'
 Plug 'ogier/guessindent'
@@ -76,7 +78,7 @@ command W w
 command Q q
 command Wq wq
 command WQ wq
-cmap w!! exec 'w !sudo dd of=' . shellescape(expand('%'))
+cmap w!! w suda://%
 
 set clipboard+=unnamedplus
 
