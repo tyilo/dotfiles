@@ -3,3 +3,5 @@ alias ls='ls --color=auto --human-readable'
 
 alias paste='xclip -selection clipboard -o'
 alias copy='xclip -selection clipboard -i'
+
+alias music='ncmpcpp'
