@@ -17,3 +17,7 @@ curl -fLo ~/.config/fish/functions/fundle.fish --create-dirs https://git.io/fund
 exec fish
 fundle install
 ```
+
+Setup keyboard:
+- Install [`us_da-layout`](https://github.com/Tyilo/us_da-layout) <sup>[AUR](https://aur.archlinux.org/packages/us_da-layout/)</sup>
+- Set as default: `localectl set-x11-keymap us_da '' '' 'compose:menu'`
