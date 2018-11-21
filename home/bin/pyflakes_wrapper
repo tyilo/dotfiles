@@ -1,6 +1,7 @@
 #!/bin/bash
 # This is a wrapper script to make w0rp/ale work with pyflakes
 # thinking this is actually flake8
+set -euo pipefail
 
 for arg in "$@"; do
 	if [[ $arg == --version ]]; then
@@ -27,4 +28,5 @@ awkprog=$(cat <<'END'
 END
 )
 
+cd "$(mktemp --directory)"
 "python${version}" -mpyflakes <<< "$input" 2>&1 | awk "$awkprog"
