@@ -28,3 +28,9 @@
 	clean = git lfs clean %f
 	smudge = git lfs smudge %f
 	required = true
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[url "git@gitlab.com:"]
+	insteadOf = https://gitlab.com/
+[url "git@gitlab.au.dk:"]
+	insteadOf = https://gitlab.au.dk/
