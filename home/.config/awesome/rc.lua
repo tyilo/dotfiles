@@ -43,7 +43,7 @@ local function show_volume()
   --]]
 
   local total = 20
-  local ticks = volume / (100 / total)
+  local ticks = math.floor(volume / (100 / total))
   local bar = string.rep("#", ticks) .. string.rep(" ", total - ticks)
 
   if status == "on" then
