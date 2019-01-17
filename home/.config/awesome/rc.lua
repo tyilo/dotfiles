@@ -20,7 +20,7 @@ require('screenful')
 
 local vicious = require("vicious")
 
-local cpu_widget = require('awesome-wm-widgets.cpu-widget.cpu-widget')
+-- local cpu_widget = require('awesome-wm-widgets.cpu-widget.cpu-widget')
 local ram_widget = require('awesome-wm-widgets.ram-widget.ram-widget')
 -- local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 local battery_widget = require('awesome-wm-widgets.battery-widget.battery')
@@ -328,7 +328,7 @@ awful.screen.connect_for_each_screen(function(s)
             wibox.widget.systray(),
             separator,
             printer_jobs_widget,
-            cpu_widget,
+            -- cpu_widget,
             ram_widget,
             -- volume_widget,
             battery_widget,
