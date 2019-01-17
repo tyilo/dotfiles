@@ -13,8 +13,6 @@ cmds=(
 # Programs with dedicated tabs
 "zeal"
 "caprine"
-"discord"
-"slack"
 "thunderbird"
 
 # Chromium is nice to have running
