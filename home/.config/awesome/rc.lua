@@ -26,6 +26,14 @@ local ram_widget = require('awesome-wm-widgets.ram-widget.ram-widget')
 local battery_widget = require('awesome-wm-widgets.battery-widget.battery')
 local printer_jobs_widget = require('printer-jobs-widget')
 
+local function spawn_focus_cwd(program)
+  if client.focus and client.focus.pid ~= nil then
+    awful.spawn.with_shell('cd "$(readlink /proc/"$(pgrep -P ' .. client.focus.pid .. ')"/cwd)"; ' .. program)
+  else
+    awful.spawn.with_shell(program)
+  end
+end
+
 local last_volume_id = nil
 local function show_volume()
   local fd = io.popen("amixer sget Master")
@@ -396,11 +404,7 @@ globalkeys = gears.table.join(
     -- Standard program
     awful.key({ modkey,           }, "Return",
     function ()
-      if client.focus and client.focus.pid ~= nil then
-        awful.spawn.with_shell('cd "$(readlink /proc/"$(pgrep -P ' .. client.focus.pid .. ')"/cwd)"; ' .. terminal)
-      else
-        awful.spawn(terminal)
-      end
+      spawn_focus_cwd(terminal)
     end,
               {description = "open a terminal", group = "launcher"}),
 
@@ -486,6 +490,8 @@ globalkeys = gears.table.join(
 
      awful.key({ modkey }, "c", function() awful.spawn.with_shell("chromium") end,
               {description = "open chromium", group = "custom"}),
+     awful.key({ modkey }, "d", function() spawn_focus_cwd("nautilus .") end,
+              {description = "open nautilus", group = "custom"}),
      awful.key({ modkey }, "e", function() awful.spawn.with_shell("emoji-keyboard --toggle-search") end,
               {description = "emoji-keyboard search", group = "custom"}),
 
