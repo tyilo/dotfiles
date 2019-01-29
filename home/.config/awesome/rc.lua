@@ -73,6 +73,51 @@ local function show_volume()
   end
 end
 
+local function get_number_output(cmd)
+  local fd = io.popen(cmd)
+  local output = fd:read("*all")
+  fd:close()
+
+  return tonumber(output)
+end
+
+local max_brightness = get_number_output("brightnessctl max")
+local brightness_step = max_brightness / 10
+
+local function get_brightness()
+  return get_number_output("brightnessctl get")
+end
+
+local function set_brightness(value)
+  if value < 0 then
+    value = 0
+  end
+  awful.spawn.with_shell("brightnessctl set " .. value)
+end
+
+local function step_brightness(diff)
+  local step = math.floor(get_brightness() / brightness_step)
+  set_brightness((step + diff) * brightness_step)
+end
+
+local function increase_brightness()
+  local b = get_brightness()
+  if b == 0 then
+    set_brightness(1)
+  else
+    step_brightness(1)
+  end
+end
+
+local function decrease_brightness()
+  local b = get_brightness()
+  if 1 < b and b <= brightness_step then
+    set_brightness(1)
+  else
+    step_brightness(-1)
+  end
+end
+
 --[[
 local assault = require('assault.awesomewm.assault')
 local battery_widget = assault({
@@ -520,10 +565,10 @@ globalkeys = gears.table.join(
       end),
 
      -- Brightness
-     awful.key({}, "XF86MonBrightnessDown", function() awful.spawn.with_shell("brightnessctl set 10%-") end,
+     awful.key({}, "XF86MonBrightnessDown", decrease_brightness,
               {description = "decrease screen brightness", group = "custom"}),
 
-     awful.key({}, "XF86MonBrightnessUp", function() awful.spawn.with_shell("brightnessctl set +10%") end,
+     awful.key({}, "XF86MonBrightnessUp", increase_brightness,
               {description = "increase screen brightness", group = "custom"}),
 
     -- Print screen
