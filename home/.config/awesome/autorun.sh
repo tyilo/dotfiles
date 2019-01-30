@@ -19,6 +19,7 @@ cmds=(
 "chromium"
 
 # Task bar programs
+"fluxgui"
 "nm-applet"
 "pasystray"
 "megasync"
