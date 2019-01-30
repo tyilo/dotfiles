@@ -1,0 +1,14 @@
+#! /bin/bash -eu
+# dash doesn't support read -s, so we use bash instead<Paste>
+
+# "read" will not reset the terminal echo mode if it is canceled. Let's save/restore the tty status.
+stty_orig=`stty -g`
+trap 'stty "$stty_orig"' EXIT
+
+read -s -p "$*"
+echo "$REPLY"
+echo > /dev/tty
+
+# Script based on https://askubuntu.com/a/693530/41269
+# To be used as:
+# $ env SUDO_ASKPASS=<path_to_this> sudo -A ...

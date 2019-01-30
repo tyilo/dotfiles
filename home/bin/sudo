@@ -1,0 +1,3 @@
+#!/bin/bash
+export SUDO_ASKPASS=$HOME/bin/askpass
+exec /bin/sudo -A "$@"
