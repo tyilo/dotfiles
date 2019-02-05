@@ -537,8 +537,6 @@ globalkeys = gears.table.join(
               {description = "open chromium", group = "custom"}),
      awful.key({ modkey }, "d", function() spawn_focus_cwd("nautilus .") end,
               {description = "open nautilus", group = "custom"}),
-     awful.key({ modkey }, "e", function() awful.spawn.with_shell("emoji-keyboard --toggle-search") end,
-              {description = "emoji-keyboard search", group = "custom"}),
 
       -- Volume Keys
       awful.key({}, "XF86AudioLowerVolume", function ()
