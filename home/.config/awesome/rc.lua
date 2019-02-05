@@ -82,8 +82,9 @@ local function get_number_output(cmd)
 end
 
 local max_brightness = get_number_output("brightnessctl max")
+local brightness_step
 if max_brightness ~= nil then
-  local brightness_step = max_brightness / 10
+  brightness_step = max_brightness / 10
 end
 
 local function get_brightness()
