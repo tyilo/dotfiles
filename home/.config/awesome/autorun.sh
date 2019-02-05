@@ -19,6 +19,7 @@ cmds=(
 "chromium"
 
 # Task bar programs
+"fluxgui"
 "nm-applet"
 "pasystray"
 "megasync"
@@ -26,7 +27,6 @@ cmds=(
 "albert"
 "udiskie --tray"
 "caffeine"
-"emoji-keyboard"
 )
 
 for cmd in "${cmds[@]}"; do
