@@ -21,10 +21,21 @@ Plug 'dag/vim-fish'
 Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'itchyny/lightline.vim'
 
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'zchee/deoplete-jedi'
+"Plug 'autozimu/LanguageClient-neovim', {
+"    \ 'branch': 'next',
+"    \ 'do': 'bash install.sh',
+"    \ }
+
+" (Optional) Multi-entry selection UI.
+Plug 'junegunn/fzf'
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-jedi'
+
+" Plug 'Shougo/deoplete-clangx'
+
 Plug 'w0rp/ale'
-Plug 'Mortal/clang_complete', { 'branch': 'follow_reference' }
+" Plug 'Mortal/clang_complete', { 'branch': 'follow_reference' }
 
 Plug 'rust-lang/rust.vim'
 Plug 'cypok/vim-sml'
@@ -92,6 +103,12 @@ let g:ale_python_flake8_executable = "pyflakes_wrapper"
 let g:ale_linters = {
 \	'cpp': [],
 \	'python': ['flake8'],
+\}
+
+set hidden
+let g:LanguageClient_serverCommands = {
+\	'cpp': ['clangd'],
+\	'python': ['pyls'],
 \}
 
 let g:guessindent_prefer_tabs = 1
