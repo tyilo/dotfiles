@@ -20,7 +20,7 @@ require("awful.hotkeys_popup.keys")
 
 -- Custom
 require('awful.remote')
-require('screenful')
+-- require('screenful')
 
 local vicious = require("vicious")
 
