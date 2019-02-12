@@ -165,7 +165,9 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("~/.config/awesome/themes/default/theme.lua")
+local theme = dofile(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+theme.wallpaper = "~/.config/awesome/background.png"
+beautiful.init(theme)
 
 -- Only works in awesome 4.3 or later:
 beautiful.notification_icon_size = 100
