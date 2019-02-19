@@ -27,6 +27,7 @@ cmds=(
 "albert"
 "udiskie --tray"
 "caffeine"
+"flameshot"
 )
 
 for cmd in "${cmds[@]}"; do

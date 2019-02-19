@@ -566,7 +566,7 @@ globalkeys = gears.table.join(
               {description = "increase screen brightness", group = "custom"}),
 
     -- Print screen
-     awful.key({}, "Print", function() awful.spawn.with_shell("gnome-screenshot -i") end,
+     awful.key({}, "Print", function() awful.spawn.with_shell("flameshot gui") end,
               {description = "take screenshot", group = "custom"})
 )
 
