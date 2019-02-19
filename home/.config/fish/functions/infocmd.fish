@@ -5,9 +5,12 @@ function infocmd
 		exit
 	else
 		file "$path" && \
-		read --prompt-str 'Edit? ' ans
-		if string match --quiet --ignore-case "$ans" 'y'
-			"$EDITOR" "$path"
+		begin
+			pacman -Qo "$path"
+			read --prompt-str 'Edit? ' ans
+			if string match --quiet --ignore-case "$ans" 'y'
+				"$EDITOR" "$path"
+			end
 		end
 	end
 end
