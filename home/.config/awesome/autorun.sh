@@ -21,6 +21,7 @@ cmds=(
 # Task bar programs
 "fluxgui"
 "nm-applet"
+"blueman-applet"
 "pasystray"
 "megasync"
 "copyq"
