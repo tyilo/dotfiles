@@ -1,0 +1,89 @@
+[general]
+accounts = gmail, post-au, remote-au
+pythonfile = ~/.offlineimap.py
+
+
+
+[Account gmail]
+localrepository = gmail-local
+remoterepository = gmail-remote
+synclabels = yes
+
+postsynchook = ~/.notmuch-hook
+
+# Minutes between syncs
+autorefresh = 5
+# Quick-syncs do not update if the only changes were to IMAP flags.
+# autorefresh=5 together with quick=10 yields
+# 10 quick refreshes between each full refresh, with 5 minutes between every
+# refresh, regardless of type.
+quick = 10
+
+[Repository gmail-local]
+type = GmailMaildir
+localfolders = ~/Maildir/gmail
+
+[Repository gmail-remote]
+type = Gmail
+remoteuser = asgerdrewsen
+remotepasseval = get_pass('gmail_token')
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+ssl_version = tls1_2
+
+# Instead of closing the connection once a sync is complete, offlineimap will
+# send empty data to the server to hold the connection open. A value of 60
+# attempts to hold the connection for a minute between syncs (both quick and
+# autorefresh).This setting has no effect if autorefresh and holdconnectionopen
+# are not both set.
+keepalive = 60
+# OfflineIMAP normally closes IMAP server connections between refreshes if
+# the global option autorefresh is specified.  If you wish it to keep the
+# connection open, set this to true. This setting has no effect if autorefresh
+# is not set.
+holdconnectionopen = yes
+
+
+
+[Account post-au]
+localrepository = post-au-local
+remoterepository = post-au-remote
+postsynchook = ~/.notmuch-hook
+autorefresh = 5
+quick = 10
+
+[Repository post-au-local]
+type = Maildir
+localfolders = ~/Maildir/post-au
+
+[Repository post-au-remote]
+type = IMAP
+remotehost = post.au.dk
+remoteuser = au522953@uni.au.dk
+remotepasseval = get_pass('au')
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+ssl_version = tls1_2
+keepalive = 60
+holdconnectionopen = yes
+
+
+
+[Account cs-au]
+localrepository = cs-au-local
+remoterepository = cs-au-remote
+postsynchook = ~/.notmuch-hook
+autorefresh = 5
+quick = 10
+
+[Repository cs-au-local]
+type = Maildir
+localfolders = ~/Maildir/cs-au
+
+[Repository cs-au-remote]
+type = IMAP
+remotehost = imaps.au.dk
+remoteuser = au522953@uni.au.dk
+remotepasseval = get_pass('au')
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+ssl_version = tls1_2
+keepalive = 60
+holdconnectionopen = yes

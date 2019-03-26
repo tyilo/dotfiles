@@ -1,0 +1,49 @@
+prefer_plaintext = True
+quit_on_last_bclose = True
+
+[bindings]
+	/ = prompt 'search '
+	q = bclose
+
+	[[thread]]
+		u = pipeto urlscan
+
+[accounts]
+	[[gmail]]
+		realname = Asger Hautop Drewsen
+		address = asgerdrewsen@gmail.com
+		sendmail_command = msmtp --account=gmail -t
+		sentbox = maildir:///home/tyilo/Maildir/gmail/[Gmail].Sent Mail
+		draft_box = maildir:///home/tyilo/Maildir/gmail/[Gmail].Drafts
+
+		[[[abook]]]
+			type = shellcommand
+			command = 'notmuch address --format=json date:1Y'
+			regexp = '\[?{"name": "(?P<name>.*)", "address": "(?P<email>.+)", "name-addr": ".*"}[,\]]?'
+			shellcommand_external_filtering = False
+
+	[[cs-au]]
+		realname = Asger Hautop Drewsen
+		address = drewsen@cs.au.dk
+		sendmail_command = msmtp --account=cs-au -t
+		sentbox = maildir:///home/tyilo/Maildir/cs-au/Sent Items
+		draft_box = maildir:///home/tyilo/Maildir/cs-au/Drafts
+
+		[[[abook]]]
+			type = shellcommand
+			command = 'notmuch address --format=json date:1Y'
+			regexp = '\[?{"name": "(?P<name>.*)", "address": "(?P<email>.+)", "name-addr": ".*"}[,\]]?'
+			shellcommand_external_filtering = False
+
+	[[post-au]]
+		realname = Asger Hautop Drewsen
+		address = 201407206@post.au.dk
+		sendmail_command = msmtp --account=post-au -t
+		sentbox = maildir:///home/tyilo/Maildir/post-au/Sent
+		draft_box = maildir:///home/tyilo/Maildir/post-au/Drafts
+
+		[[[abook]]]
+			type = shellcommand
+			command = 'notmuch address --format=json date:1Y'
+			regexp = '\[?{"name": "(?P<name>.*)", "address": "(?P<email>.+)", "name-addr": ".*"}[,\]]?'
+			shellcommand_external_filtering = False
