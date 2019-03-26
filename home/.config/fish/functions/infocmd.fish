@@ -9,7 +9,7 @@ function infocmd
 			pacman -Qo "$path"
 			read --prompt-str 'Edit? ' ans
 			if string match --quiet --ignore-case "$ans" 'y'
-				"$EDITOR" "$path"
+				$EDITOR "$path"
 			end
 		end
 	end
