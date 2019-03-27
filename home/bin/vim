@@ -1,1 +1,6 @@
-/usr/bin/nvim
+#!/usr/bin/env bash
+if type nvim 2>/dev/null; then
+	exec nvim "$@"
+fi
+
+exec /usr/bin/vim "$@"
