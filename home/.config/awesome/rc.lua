@@ -25,10 +25,10 @@ require('awful.remote')
 local vicious = require("vicious")
 
 -- local cpu_widget = require('awesome-wm-widgets.cpu-widget.cpu-widget')
-local ram_widget = require('awesome-wm-widgets.ram-widget.ram-widget')
+-- local ram_widget = require('awesome-wm-widgets.ram-widget.ram-widget')
 -- local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 local battery_widget = require('awesome-wm-widgets.battery-widget.battery')
-local printer_jobs_widget = require('printer-jobs-widget')
+-- local printer_jobs_widget = require('printer-jobs-widget')
 
 local function spawn_focus_cwd(program)
   if client.focus and client.focus.pid ~= nil then
@@ -378,9 +378,9 @@ awful.screen.connect_for_each_screen(function(s)
             mykeyboardlayout,
             wibox.widget.systray(),
             separator,
-            printer_jobs_widget,
+            -- printer_jobs_widget,
             -- cpu_widget,
-            ram_widget,
+            -- ram_widget,
             -- volume_widget,
             battery_widget,
             mytextclock,
