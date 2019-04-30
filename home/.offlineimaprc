@@ -1,5 +1,5 @@
 [general]
-accounts = gmail, post-au, remote-au
+accounts = gmail, post-au, cs-au
 pythonfile = ~/.offlineimap.py
 
 
