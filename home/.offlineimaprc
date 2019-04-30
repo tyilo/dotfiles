@@ -12,16 +12,16 @@ synclabels = yes
 postsynchook = ~/.notmuch-hook
 
 # Minutes between syncs
-autorefresh = 5
+autorefresh = 1
 # Quick-syncs do not update if the only changes were to IMAP flags.
-# autorefresh=5 together with quick=10 yields
-# 10 quick refreshes between each full refresh, with 5 minutes between every
+# autorefresh=1 together with quick=10 yields
+# 10 quick refreshes between each full refresh, with 1 minutes between every
 # refresh, regardless of type.
 quick = 10
 
 [Repository gmail-local]
 type = GmailMaildir
-localfolders = ~/Maildir/gmail
+localfolders = ~/.mail/gmail
 
 [Repository gmail-remote]
 type = Gmail
@@ -48,12 +48,12 @@ holdconnectionopen = yes
 localrepository = post-au-local
 remoterepository = post-au-remote
 postsynchook = ~/.notmuch-hook
-autorefresh = 5
+autorefresh = 1
 quick = 10
 
 [Repository post-au-local]
 type = Maildir
-localfolders = ~/Maildir/post-au
+localfolders = ~/.mail/post-au
 
 [Repository post-au-remote]
 type = IMAP
@@ -71,12 +71,12 @@ holdconnectionopen = yes
 localrepository = cs-au-local
 remoterepository = cs-au-remote
 postsynchook = ~/.notmuch-hook
-autorefresh = 5
+autorefresh = 1
 quick = 10
 
 [Repository cs-au-local]
 type = Maildir
-localfolders = ~/Maildir/cs-au
+localfolders = ~/.mail/cs-au
 
 [Repository cs-au-remote]
 type = IMAP

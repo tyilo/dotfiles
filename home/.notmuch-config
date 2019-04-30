@@ -11,7 +11,7 @@
 # configured here named ".notmuch".
 #
 [database]
-path=/home/tyilo/Maildir
+path=/home/tyilo/.mail
 
 # User configuration
 #

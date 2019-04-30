@@ -16,8 +16,8 @@ quit_on_last_bclose = True
 		realname = Asger Hautop Drewsen
 		address = asgerdrewsen@gmail.com
 		sendmail_command = msmtp --account=gmail -t
-		sentbox = maildir:///home/tyilo/Maildir/gmail/[Gmail].Sent Mail
-		draft_box = maildir:///home/tyilo/Maildir/gmail/[Gmail].Drafts
+		sent_box = maildir:///home/tyilo/.mail/gmail/[Gmail].Sent Mail
+		draft_box = maildir:///home/tyilo/.mail/gmail/[Gmail].Drafts
 
 		[[[abook]]]
 			type = shellcommand
@@ -29,8 +29,8 @@ quit_on_last_bclose = True
 		realname = Asger Hautop Drewsen
 		address = drewsen@cs.au.dk
 		sendmail_command = msmtp --account=cs-au -t
-		sentbox = maildir:///home/tyilo/Maildir/cs-au/Sent Items
-		draft_box = maildir:///home/tyilo/Maildir/cs-au/Drafts
+		sent_box = maildir:///home/tyilo/.mail/cs-au/Sent Items
+		draft_box = maildir:///home/tyilo/.mail/cs-au/Drafts
 
 		[[[abook]]]
 			type = shellcommand
@@ -42,8 +42,8 @@ quit_on_last_bclose = True
 		realname = Asger Hautop Drewsen
 		address = 201407206@post.au.dk
 		sendmail_command = msmtp --account=post-au -t
-		sentbox = maildir:///home/tyilo/Maildir/post-au/Sent
-		draft_box = maildir:///home/tyilo/Maildir/post-au/Drafts
+		sent_box = maildir:///home/tyilo/.mail/post-au/Sent
+		draft_box = maildir:///home/tyilo/.mail/post-au/Drafts
 
 		[[[abook]]]
 			type = shellcommand
