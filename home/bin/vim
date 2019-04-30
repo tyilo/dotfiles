@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-if type nvim 2>/dev/null; then
+if type nvim &>/dev/null; then
 	exec nvim "$@"
 fi
 
