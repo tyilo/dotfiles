@@ -805,7 +805,7 @@ client.connect_signal("request::titlebars", function(c)
     }
 end)
 
-awful.spawn.with_shell('~/.config/awesome/autorun.sh')
+awful.spawn.with_shell('dex -a')
 
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)
