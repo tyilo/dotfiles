@@ -1,5 +1,5 @@
 if command -s vagrant
-	function vagrant
+	function vagrantdir
 		set box $argv[1]
 		set args $argv[2..-1]
 		set dir ~/vagrant/$box
