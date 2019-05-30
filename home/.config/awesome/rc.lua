@@ -29,6 +29,7 @@ local vicious = require("vicious")
 -- local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 local battery_widget = require('awesome-wm-widgets.battery-widget.battery')
 -- local printer_jobs_widget = require('printer-jobs-widget')
+-- local unread_emails_widget = require('unread-emails-widget')
 
 local function spawn_focus_cwd(program)
   if client.focus and client.focus.pid ~= nil then
@@ -378,6 +379,7 @@ awful.screen.connect_for_each_screen(function(s)
             mykeyboardlayout,
             wibox.widget.systray(),
             separator,
+            -- unread_emails_widget,
             -- printer_jobs_widget,
             -- cpu_widget,
             -- ram_widget,
