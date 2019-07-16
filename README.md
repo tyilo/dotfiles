@@ -2,22 +2,13 @@ dotfiles
 ========
 
 Installing:
-
-```
-# Install homeshick
+- Install packages:
+	- [`fish`](https://www.archlinux.org/packages/community/x86_64/fish/)
+	- [`neovim`](https://www.archlinux.org/packages/community/x86_64/neovim/)
+	- [`us_da-layout`](https://github.com/Tyilo/us_da-layout) <sup>[AUR](https://aur.archlinux.org/packages/us_da-layout/)</sup>
+- Clone this repo with homeshick and run [./setup](setup):
+```sh
 git clone git://github.com/andsens/homeshick.git ~/.homesick/repos/homeshick
 ~/.homesick/repos/homeshick/bin/homeshick clone Tyilo/dotfiles
-
-# Install vim-plug for neovim
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-nvim +PlugInstall
-
-# Install fundle for fish
-curl -fLo ~/.config/fish/functions/fundle.fish --create-dirs https://git.io/fundle
-exec fish
-fundle install
+./setup
 ```
-
-Setup keyboard:
-- Install [`us_da-layout`](https://github.com/Tyilo/us_da-layout) <sup>[AUR](https://aur.archlinux.org/packages/us_da-layout/)</sup>
-- Set as default: `localectl set-x11-keymap us_da '' '' 'compose:menu,caps:escape'`
