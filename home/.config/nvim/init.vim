@@ -2,7 +2,7 @@ let g:python3_host_prog = "/usr/bin/python3"
 
 let g:clang_library_path = "/usr/lib"
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'Tyilo/logos.vim'
 Plug 'Tyilo/applescript.vim'
