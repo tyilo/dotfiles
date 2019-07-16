@@ -44,6 +44,8 @@ Plug 'udalov/kotlin-vim'
 
 Plug 'FStarLang/VimFStar', { 'for': 'fstar' }
 
+Plug 'HerringtonDarkholme/yats.vim'
+
 " Plug 'git://git.code.sf.net/p/atp-vim/code', { 'as': 'atp-vim' }
 
 " This overrides my builtin default indent :/
