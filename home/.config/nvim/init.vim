@@ -102,7 +102,7 @@ cmap w!! w suda://%
 
 set clipboard+=unnamedplus
 
-colorscheme Tomorrow-Night-Bright
+silent! colorscheme Tomorrow-Night-Bright
 
 let g:deoplete#enable_at_startup = 1
 
