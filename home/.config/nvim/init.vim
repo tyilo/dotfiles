@@ -126,3 +126,6 @@ autocmd BufReadPost * :GuessIndent
 " Make < > shifts keep selection
 vnoremap < <gv
 vnoremap > >gv
+
+let g:tex_comment_nospell=1
+au FileType python nnoremap <buffer> <Leader>r O<C-A> = <Esc>p
