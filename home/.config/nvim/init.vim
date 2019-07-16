@@ -15,7 +15,7 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'lambdalisue/suda.vim'
 
 Plug 'bogado/file-line'
-Plug 'thirtythreeforty/lessspace.vim'
+Plug 'Cimbali/vim-better-whitespace'
 Plug 'ogier/guessindent'
 Plug 'dag/vim-fish'
 Plug 'chriskempson/vim-tomorrow-theme'
@@ -50,6 +50,13 @@ Plug 'FStarLang/VimFStar', { 'for': 'fstar' }
 "Plug 'Superbil/llvm.vim'
 
 call plug#end()
+
+let g:better_whitespace_enabled=0
+let g:strip_whitespace_on_save=1
+let g:strip_whitespace_confirm=0
+let g:strip_only_modified_lines=1
+let g:strip_whitelines_at_eof=1
+" let g:show_spaces_that_precede_tabs=1
 
 augroup filetypedetect
     au BufRead,BufNewFile *.jif setfiletype java
