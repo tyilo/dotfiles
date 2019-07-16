@@ -1,0 +1,6 @@
+#!/bin/bash
+set -euo pipefail
+if zenity --question --text="Import $1 to Google Calendar?"; then
+	url=$(gcalcli import "$1" --calendar 'Google Calendar' | grep -o 'https://.*')
+	xdg-open "$url"
+fi
