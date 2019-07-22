@@ -1,0 +1,9 @@
+#!/bin/bash
+set -euo pipefail
+
+if [[ $# != 1 ]]; then
+	echo "Usage: $0 hostname" >&2
+	exit 1
+fi
+
+infocmp "$TERM" | ssh "$1" sh -c 'cat > /tmp/infocmp; tic -x -o \~/.terminfo /tmp/infocmp'

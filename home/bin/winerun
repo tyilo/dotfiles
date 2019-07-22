@@ -1,0 +1,16 @@
+#!/bin/bash
+set -euo pipefail
+
+pushd .
+
+while [[ $PWD != / ]]; do
+	if [[ -d drive_c ]]; then
+		export WINEPREFIX="$PWD"
+		popd
+		exec wine "$1"
+	fi
+	cd ..
+done
+
+echo "Could not find wineprefix." >&2
+exit 1
