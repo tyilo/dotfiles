@@ -807,7 +807,16 @@ client.connect_signal("request::titlebars", function(c)
     }
 end)
 
-awful.spawn.with_shell('dex -a')
+awesome.connect_signal("exit", function(reason_restart)
+    if reason_restart then
+        awful.spawn.with_shell("touch ~/.awesome-restart")
+    else
+        awful.spawn.with_shell("rm -f ~/.awesome-restart")
+    end
+end)
+awesome.connect_signal("startup", function()
+    --awful.spawn.with_shell("rm ~/.awesome-restart || dex -a")
+end)
 
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)
