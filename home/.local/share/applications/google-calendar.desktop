@@ -2,4 +2,4 @@
 Name=Google Calendar ICS Import
 Exec=gcalcli-import %U
 Type=Application
-MimeType=application/x-calendar;x-scheme-handler/ics;text/calendar
+MimeType=application/x-calendar;x-scheme-handler/ics;text/calendar;
