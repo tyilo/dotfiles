@@ -22,6 +22,8 @@ require("awful.hotkeys_popup.keys")
 require('awful.remote')
 -- require('screenful')
 
+local rule_tags = require("rule_tags")
+
 local vicious = require("vicious")
 
 -- local cpu_widget = require('awesome-wm-widgets.cpu-widget.cpu-widget')
@@ -335,7 +337,9 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7 Zeal", "8 Messenger", "9 Mail" }, s, awful.layout.layouts[1])
+    local is_primary = s == screen.primary
+
+    awful.tag(rule_tags.get_tagnames(is_primary), s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -619,7 +623,7 @@ clientkeys = gears.table.join(
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
-for i = 1, 9 do
+for i = 1, 10 do
     globalkeys = gears.table.join(globalkeys,
         -- View tag only.
         awful.key({ modkey }, "#" .. i + 9,
@@ -742,14 +746,14 @@ awful.rules.rules = {
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { screen = 1, tag = "2" } },
-
-    { rule = { class = "Zeal" },
-      properties = { screen = 1, tag = "7 Zeal" } },
-    { rule = { class = "Caprine" },
-      properties = { screen = 1, tag = "8 Messenger" } },
-    { rule = { class = "Thunderbird" },
-      properties = { screen = 1, tag = "9 Mail" } },
 }
+
+function extend(t1, t2)
+    return table.move(t2, 1, #t2, #t1 + 1, t1)
+end
+
+extend(awful.rules.rules, rule_tags.get_rules())
+
 -- }}}
 
 -- {{{ Signals
