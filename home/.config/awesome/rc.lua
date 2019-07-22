@@ -568,6 +568,11 @@ globalkeys = gears.table.join(
       end),
 
      -- Brightness
+     awful.key({}, "F7", function()
+       awful.spawn.with_shell("$HOME/bin/toggle_screen", false)
+     end,
+              {description = "toggle screen and keyboard backlight", group = "custom"}),
+
      awful.key({}, "XF86MonBrightnessDown", decrease_brightness,
               {description = "decrease screen brightness", group = "custom"}),
 
