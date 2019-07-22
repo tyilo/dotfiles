@@ -462,7 +462,10 @@ globalkeys = gears.table.join(
               {description = "open a terminal", group = "launcher"}),
     ]]--
 
-    awful.key({ modkey, "Control" }, "r", awesome.restart,
+    awful.key({ modkey, "Control" }, "r", function()
+      awful.spawn.with_shell("touch ~/.awesome-restart")
+      awesome.restart()
+    end,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
@@ -811,15 +814,8 @@ client.connect_signal("request::titlebars", function(c)
     }
 end)
 
-awesome.connect_signal("exit", function(reason_restart)
-    if reason_restart then
-        awful.spawn.with_shell("touch ~/.awesome-restart")
-    else
-        awful.spawn.with_shell("rm -f ~/.awesome-restart")
-    end
-end)
 awesome.connect_signal("startup", function()
-    --awful.spawn.with_shell("rm ~/.awesome-restart || dex -a")
+    awful.spawn.with_shell("rm ~/.awesome-restart || dex -a")
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
