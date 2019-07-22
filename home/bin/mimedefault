@@ -49,6 +49,15 @@ if __name__ == '__main__':
 	applications = get_all_applications(mimetype)
 	default_application = get_default_application(mimetype)
 
+	applications = sorted(applications)
+	if default_application:
+		try:
+			applications.remove(default_application)
+		except ValueError:
+			pass
+
+		applications.insert(0, default_application)
+
 	print(f'Applications known to support mimetype {mimetype}:')
 
 	for i, app in enumerate(applications):
@@ -58,8 +67,7 @@ if __name__ == '__main__':
 		print(f' {i + 1}: {app}{suffix}')
 
 	print()
-	print(' o: Other application')
-	print()
+	print('Enter a number or the name of a desktop file.')
 
 	while True:
 		try:
@@ -68,19 +76,20 @@ if __name__ == '__main__':
 			print()
 			raise SystemExit
 
-		if choice.lower() == 'o':
-			new_default = input('Application name: ')
-			break
-		else:
-			try:
-				index = int(choice) - 1
-				new_default = applications[index]
-			except (ValueError, IndexError):
-				pass
-			else:
-				break
+		try:
+			index = int(choice) - 1
+			new_default = applications[index]
+		except (ValueError, IndexError):
+			new_default = choice
+			if not new_default.endswith('.desktop'):
+				new_default += '.desktop'
 
-	print()
-	print(f'New default: {new_default}')
-	set_default_application(mimetype, new_default)
-	
+
+		set_default_application(mimetype, new_default)
+		if get_default_application(mimetype) == new_default:
+			print()
+			print(f'New default: {new_default}')
+			break
+
+		print()
+		print(f'Failed to set new default to {new_default}')
