@@ -514,7 +514,7 @@ globalkeys = gears.table.join(
                     prompt       = "Run Lua code: ",
                     textbox      = awful.screen.focused().mypromptbox.widget,
                     exe_callback = awful.util.eval,
-                    history_path = awful.util.get_cache_dir() .. "/history_eval"
+                    history_path = gears.filesystem.get_cache_dir() .. "/history_eval"
                   }
               end,
               {description = "lua execute prompt", group = "awesome"}),
@@ -558,13 +558,13 @@ globalkeys = gears.table.join(
       end),
       -- Media Keys
       awful.key({}, "XF86AudioPlay", function()
-        awful.util.spawn("playerctl play-pause", false)
+        awful.spawn("playerctl play-pause", false)
       end),
       awful.key({}, "XF86AudioNext", function()
-        awful.util.spawn("playerctl next", false)
+        awful.spawn("playerctl next", false)
       end),
       awful.key({}, "XF86AudioPrev", function()
-        awful.util.spawn("playerctl previous", false)
+        awful.spawn("playerctl previous", false)
       end),
 
      -- Brightness
