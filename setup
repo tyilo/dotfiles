@@ -5,9 +5,21 @@ if ! localectl set-x11-keymap us_da '' '' 'compose:menu,caps:escape'; then
 	echo "Couldn't set us_da keymap!"
 fi
 
+set +e
+ssh_output=$(ssh -T git@github.com 2>&1)
+if [[ $? != 1 ]]; then
+	echo "Output from ssh:"
+	echo "$ssh_output"
+	echo
+	echo "It looks like you don't have a ssh key registered with GitHub."
+	echo "Disabling the global gitconfig for now..."
+	rm ~/.gitconfig
+fi
+set -e
+
 # Install vim-plug for neovim
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-nvim +PlugInstall
+nvim +PlugInstall +q +q
 
 # Install fundle for fish
 curl -fLo ~/.config/fish/functions/fundle.fish --create-dirs https://git.io/fundle
