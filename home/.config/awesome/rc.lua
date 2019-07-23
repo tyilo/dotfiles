@@ -166,6 +166,8 @@ do
 end
 -- }}}
 
+awful.spawn.once("dex -a", {})
+
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 local theme = dofile(gears.filesystem.get_themes_dir() .. "default/theme.lua")
@@ -462,10 +464,7 @@ globalkeys = gears.table.join(
               {description = "open a terminal", group = "launcher"}),
     ]]--
 
-    awful.key({ modkey, "Control" }, "r", function()
-      awful.spawn.with_shell("touch ~/.awesome-restart")
-      awesome.restart()
-    end,
+    awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
@@ -817,10 +816,6 @@ client.connect_signal("request::titlebars", function(c)
         },
         layout = wibox.layout.align.horizontal
     }
-end)
-
-awesome.connect_signal("startup", function()
-    awful.spawn.with_shell("rm ~/.awesome-restart || dex -a")
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
