@@ -1,7 +1,6 @@
 #!/bin/bash
 backup_screen=$HOME/.screen_toggle_screen_brightness
 backup_kbd=$HOME/.screen_toggle_kbd_brightness
-screen_file=/sys/class/backlight/intel_backlight/brightness
 
 function kbd_dbus {
 	upower=org.freedesktop.UPower
@@ -10,7 +9,7 @@ function kbd_dbus {
 		"$upower".KbdBacklight.$@ | cut -d' ' -f5
 }
 
-screen_value=$(cat "$screen_file")
+screen_value=$(brightnessctl get)
 kbd_value=$(kbd_dbus GetBrightness)
 
 if [[ $screen_value = 0 ]]; then
@@ -25,11 +24,11 @@ if [[ $screen_value = 0 ]]; then
 		kbd_value=1
 	fi
 else
-	cp "$screen_file" "$backup_screen"
+	echo "$screen_value" > "$backup_screen"
 	echo "$kbd_value" > "$backup_kbd"
 	screen_value=0
 	kbd_value=0
 fi
 
-echo "$screen_value" | sudo tee "$screen_file"
+sudo brightnessctl set "$screen_value"
 kbd_dbus SetBrightness int32:"$kbd_value"

@@ -102,7 +102,7 @@ local function set_brightness(value)
   if value < 0 then
     value = 0
   end
-  awful.spawn.with_shell("brightnessctl set " .. value)
+  awful.spawn.with_shell("sudo brightnessctl set " .. value)
 end
 
 local function step_brightness(diff)
