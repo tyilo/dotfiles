@@ -5,29 +5,12 @@
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	g = grep --break --heading --line-number
 	clone-branches = "! git branch -a | sed -n \"/\\/HEAD /d; /\\/master$/d; /remotes/p;\" | xargs -L1 git checkout -t; git checkout master"
-	log-diff = log --full-diff -p
-[push]
-	default = current
-[color]
-	ui = true
-[filter "media"]
-	required = true
-	clean = git media clean %f
-	smudge = git media smudge %f
 [grep]
 	lineNumber = true
 [core]
 	autocrlf = input
 [credential]
 	helper = gnome-keyring
-[filter "hawser"]
-	clean = git hawser clean %f
-	smudge = git hawser smudge %f
-	required = true
-[filter "lfs"]
-	clean = git lfs clean %f
-	smudge = git lfs smudge %f
-	required = true
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 [url "git@gitlab.com:"]
