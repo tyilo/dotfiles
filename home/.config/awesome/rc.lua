@@ -166,7 +166,7 @@ do
 end
 -- }}}
 
-awful.spawn.once("dex -a", {})
+awful.spawn.with_shell("pgrep flameshot || dex -a")
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
