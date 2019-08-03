@@ -18,7 +18,7 @@ Plug 'bogado/file-line'
 Plug 'Cimbali/vim-better-whitespace'
 Plug 'ogier/guessindent'
 Plug 'dag/vim-fish'
-Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim' }
 Plug 'itchyny/lightline.vim'
 
 "Plug 'autozimu/LanguageClient-neovim', {
