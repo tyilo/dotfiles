@@ -111,11 +111,12 @@ let g:ale_python_flake8_executable = "pyflakes_wrapper"
 
 let g:ale_linters = {
 \	'asm': [],
-\	'cpp': [],
+\	'cpp': ['clangcheck'],
 \	'python': ['flake8'],
 \}
 
 let g:ale_fixers = {
+\	'cpp': ['clang-format'],
 \	'python': ['black'],
 \}
 
