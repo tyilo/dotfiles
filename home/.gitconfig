@@ -17,3 +17,9 @@
 	insteadOf = https://gitlab.com/
 [url "git@gitlab.au.dk:"]
 	insteadOf = https://gitlab.au.dk/
+[diff]
+	tool = vimdiff3
+[merge]
+	tool = vimdiff3
+[mergetool]
+	path = nvim
