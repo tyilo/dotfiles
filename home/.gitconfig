@@ -12,11 +12,11 @@
 [credential]
 	helper = gnome-keyring
 [url "git@github.com:"]
-	insteadOf = https://github.com/
+	pushInsteadOf = https://github.com/
 [url "git@gitlab.com:"]
-	insteadOf = https://gitlab.com/
+	pushInsteadOf = https://gitlab.com/
 [url "git@gitlab.au.dk:"]
-	insteadOf = https://gitlab.au.dk/
+	pushInsteadOf = https://gitlab.au.dk/
 [diff]
 	tool = vimdiff3
 [merge]
