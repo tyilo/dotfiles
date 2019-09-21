@@ -29,5 +29,5 @@
 - Run [setup script](setup):
 
   ```sh
-  ~/.homeshick/repos/dotfiles/setup
+  ~/.homesick/repos/dotfiles/setup
   ```
