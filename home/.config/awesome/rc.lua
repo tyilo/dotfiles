@@ -543,8 +543,8 @@ globalkeys = gears.table.join(
 
      --]]
 
-     awful.key({ modkey }, "c", function() awful.spawn.with_shell("firefox") end,
-              {description = "open firefox", group = "custom"}),
+     awful.key({ modkey }, "c", function() awful.spawn.with_shell("chromium") end,
+              {description = "open chromium", group = "custom"}),
      awful.key({ modkey }, "d", function() spawn_focus_cwd("nautilus .") end,
               {description = "open nautilus", group = "custom"}),
 
