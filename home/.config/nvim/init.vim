@@ -2,7 +2,11 @@ let g:python3_host_prog = "/usr/bin/python3"
 
 let g:clang_library_path = "/usr/lib"
 
-call plug#begin('~/.local/share/nvim/plugged')
+if has('nvim')
+	call plug#begin('~/.local/share/nvim/plugged')
+else
+	call plug#begin('~/.vim/plugged')
+endif
 
 Plug 'Tyilo/logos.vim'
 Plug 'Tyilo/applescript.vim'
@@ -21,6 +25,13 @@ Plug 'dag/vim-fish'
 Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim' }
 Plug 'itchyny/lightline.vim'
 
+if has('nvim')
+	Plug 'https://framagit.org/tyreunom/coquille.git/'
+else
+	Plug 'let-def/vimbufsync'
+	Plug 'the-lambda-church/coquille', { 'branch': 'pathogen-bundle' }
+endif
+
 "Plug 'autozimu/LanguageClient-neovim', {
 "    \ 'branch': 'next',
 "    \ 'do': 'bash install.sh',
@@ -29,8 +40,16 @@ Plug 'itchyny/lightline.vim'
 " (Optional) Multi-entry selection UI.
 Plug 'junegunn/fzf'
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+if has('nvim')
+	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+	Plug 'Shougo/deoplete.nvim'
+	Plug 'roxma/nvim-yarp'
+	Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
 Plug 'zchee/deoplete-jedi'
+Plug 'lervag/vimtex'
 
 " Plug 'Shougo/deoplete-clangx'
 
@@ -41,6 +60,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'cypok/vim-sml'
 Plug 'petRUShka/vim-sage'
 Plug 'udalov/kotlin-vim'
+Plug 'evanleck/vim-svelte'
 
 Plug 'FStarLang/VimFStar', { 'for': 'fstar' }
 
@@ -58,10 +78,10 @@ let g:strip_whitespace_on_save=1
 let g:strip_whitespace_confirm=0
 let g:strip_only_modified_lines=1
 let g:strip_whitelines_at_eof=1
-" let g:show_spaces_that_precede_tabs=1
+let g:show_spaces_that_precede_tabs=1
 
 augroup filetypedetect
-    au BufRead,BufNewFile *.jif setfiletype java
+	au BufRead,BufNewFile *.jif setfiletype java
 augroup END
 
 " let b:atp_Viewer = "evince"
@@ -92,7 +112,9 @@ set history=9999
 set undolevels=9999
 set undoreload=10000
 
-set inccommand=nosplit
+if exists('&inccommand')
+	set inccommand=nosplit
+endif
 
 command W w
 command Q q
@@ -106,6 +128,10 @@ silent! colorscheme Tomorrow-Night-Bright
 
 let g:deoplete#enable_at_startup = 1
 
+call deoplete#custom#var('omni', 'input_patterns', {
+\	'tex': g:vimtex#re#deoplete
+\})
+
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_python_flake8_executable = "pyflakes_wrapper"
 
@@ -118,7 +144,13 @@ let g:ale_linters = {
 let g:ale_fixers = {
 \	'cpp': ['clang-format'],
 \	'python': ['black'],
+\	'javascript': ['prettier'],
+\	'css': ['prettier'],
+\	'html': ['prettier'],
+\	'svelte': ['prettier'],
 \}
+
+let g:ale_javascript_prettier_options = '--plugin-search-dir=/home/tyilo/.npm-packages/lib'
 
 set hidden
 let g:LanguageClient_serverCommands = {
@@ -128,12 +160,36 @@ let g:LanguageClient_serverCommands = {
 
 let g:guessindent_prefer_tabs = 1
 autocmd BufReadPost * :GuessIndent
+autocmd Filetype python set softtabstop=4 tabstop=4 shiftwidth=4 expandtab
 
 " Make < > shifts keep selection
 vnoremap < <gv
 vnoremap > >gv
 
 let g:tex_comment_nospell=1
-au FileType python nnoremap <buffer> <Leader>r O<C-A> = <Esc>p
+
+function! ClearCoqHighlight()
+    hi clear CheckedByCoq
+    hi clear SentToCoq
+    hi clear CoqErrorCommand
+    hi clear CoqError
+endfunction
+
+au FileType coq nnoremap <buffer> <Leader>p oProof. reflexivity. Qed.<Esc>
+au FileType coq nnoremap <Leader>l :call CoqLaunch()<CR>
+au FileType coq nnoremap <Leader>r :call CoqStop()<CR> <bar> :call ClearCoqHighlight()<CR> <bar> :call CoqLaunch()<CR> <bar> :call CoqToCursor()<CR>
+au FileType coq nnoremap <Leader>s :call CoqSearch("
+au BufNewFile,BufReadPost *.v :set softtabstop=2 tabstop=2 shiftwidth=2 expandtab
+
+au BufNewFile,BufRead *.tex :set spell textwidth=88
+
+"let g:coquille_auto_move = 'true'
+
+au FileType coq call coquille#FNMapping()
+if has('nvim')
+	"au FileType coq call CoqLaunch()
+else
+	"au FileType coq CoqLaunch
+endif
 
 nnoremap <Leader>f :ALEFix<CR>
