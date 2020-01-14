@@ -68,3 +68,5 @@ set -g theme_display_vagrant yes
 set -g theme_display_date no
 set -g theme_show_exit_status yes
 set -g theme_nerd_fonts yes
+
+set -gx MANPATH '/usr/share/man'
