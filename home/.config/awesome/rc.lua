@@ -264,9 +264,6 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
--- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
-
 -- {{{ Wibar
 separator = wibox.widget {
   widget = wibox.widget.separator,
@@ -382,7 +379,6 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
             wibox.widget.systray(),
             separator,
             -- unread_emails_widget,
