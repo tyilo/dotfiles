@@ -2,11 +2,14 @@
 set -euo pipefail
 
 while [[ $PWD != / ]]; do
+	if [[ -f poetry.lock ]]; then
+		exec pipenv run "$@"
+	fi
 	if [[ -f Pipfile ]]; then
 		exec pipenv run "$@"
 	fi
 	cd ..
 done
 
-echo "Could not find Pipfile." >&2
+echo "Could not find poetry.lock or Pipfile." >&2
 exit 1
