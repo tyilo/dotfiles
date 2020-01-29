@@ -7,6 +7,10 @@ for arg in "$@"; do
 		out=${arg%.cpp}
 		break
 	fi
+	if [[ $arg == *.c ]]; then
+		out=${arg%.c}
+		break
+	fi
 done
 
 exec g++ -Wall -Wconversion -Wfatal-errors -g -std=c++17 -fsanitize=undefined,address -o "$out" "$@"
