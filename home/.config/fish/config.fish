@@ -60,8 +60,6 @@ end
 
 source "$HOME/.homesick/repos/homeshick/homeshick.fish"
 
-complete --command hub --wraps git
-
 # bobthefish config
 # https://github.com/oh-my-fish/theme-bobthefish
 set -g theme_display_vagrant yes
