@@ -3,7 +3,7 @@ set -euo pipefail
 
 while [[ $PWD != / ]]; do
 	if [[ -f poetry.lock ]]; then
-		exec pipenv run "$@"
+		exec poetry run "$@"
 	fi
 	if [[ -f Pipfile ]]; then
 		exec pipenv run "$@"
