@@ -21,7 +21,7 @@ Plug 'lambdalisue/suda.vim'
 Plug 'bogado/file-line'
 Plug 'Cimbali/vim-better-whitespace'
 Plug 'ogier/guessindent'
-Plug 'dag/vim-fish'
+Plug 'blankname/vim-fish'
 Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim' }
 Plug 'itchyny/lightline.vim'
 
