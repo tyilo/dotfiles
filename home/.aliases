@@ -1,14 +1,29 @@
+# Colors and use prefixes for file sizes
+alias ls='ls --color=auto --human-readable'
+
 # Don't follow symlinks
-alias file='file -h'
+alias file='file --no-dereference'
 
 # Colors
 alias tree='tree -C'
 
 # Show output in binary files
-alias grep='grep --color=auto -a'
+alias grep='grep --color=auto --text'
 
-# Make HTTPie send parameters as a form instead of JSON
-alias http='http -f'
+# Better diff format
+alias diff="colordiff --unified"
+
+# No invalid sequences
+alias sed="env LANG=C sed"
+
+# Suppress startup message
+alias r="r --quiet"
+
+# Arrow keys in sml REPL
+alias sml="rlwrap sml"
+
+# Default to CLI mode
+alias emacs="emacs --no-window-system"
 
 # Start a simple HTTP server
 alias serve='python3 -m http.server'
@@ -17,17 +32,9 @@ alias serve='python3 -m http.server'
 # Note: This is a fake UDID:
 alias curl-cydia='curl --header "X-Machine: iPhone3,1" --header "X-Unique-ID: 8843d7f92416211de9ebb963ff4ce28125932878" --header "X-Firmware: 6.1" --header "User-Agent: Telesphoreo APT-HTTP/1.0.592"'
 
-# Better diff format
-alias diff="colordiff -u"
+# Copy and paste
+alias copy='xclip -selection clipboard -in'
+alias paste='xclip -selection clipboard -out'
 
-# No invalid sequences
-alias sed="env LANG=C sed"
-
-# Suppress startup message
-alias r="r -q"
-
-# Arrow keys in sml REPL
-alias sml="rlwrap sml"
-
-# Default to CLI mode
-alias emacs="emacs -nw"
+# I can't remember how to spell this command
+alias music='ncmpcpp'

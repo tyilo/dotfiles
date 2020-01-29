@@ -1,0 +1,4 @@
+export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.luarocks/bin:$PATH"
+
+export EDITOR=vim
+export BROWSER=chromium

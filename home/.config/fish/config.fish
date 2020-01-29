@@ -5,22 +5,6 @@ fundle plugin 'jethrokuan/z'
 
 fundle init
 
-function setenv
-	switch $argv[1]
-		case PATH MANPATH INFOPATH
-			set -l paths
-			# Replace colons and spaces with newlines
-			for path in (echo $argv[2] | /usr/bin/tr ': ' \n)
-				if [ -d "$path" ]
-					set paths $paths "$path"
-				end
-			end
-			set -gx $argv[1] $paths
- 		case '*'
-			set -gx $argv
-	end
-end
-
 function source_aliases
 	# sed 's/alias \([^=]*\)=/abbr -a \1 /g' $argv[1] | source
 	source < $argv[1]
@@ -34,29 +18,8 @@ end
 ## Remove duplicated
 # set -x PATH (echo $PATH | tr ' ' '\n' | nl | sort -u -k2 | sort -n | cut -f2-)
 
-switch (uname)
-	case Darwin
-		switch (uname -m)
-			case 'iPhone*'
-				set _osname 'ios'
-			case '*'
-				set _osname 'osx'
-		end
-	case Linux
-		set _osname 'linux'
-end
-
-if [ -n "$_osname" ]
-	source ~/.env."$_osname"
-end
-
-source ~/.env
+source ~/.environment
 source_aliases ~/.aliases
-
-
-if [ -n "$_osname" ]
-	source_aliases ~/.aliases."$_osname"
-end
 
 source "$HOME/.homesick/repos/homeshick/homeshick.fish"
 

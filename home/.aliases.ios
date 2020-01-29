@@ -1,5 +1,0 @@
-# Always run uicache with the mobile user
-alias uicache='sudo -u mobile uicache'
-
-# Colors and use prefixes for file sizes
-alias ls='ls --color=auto --human-readable'
