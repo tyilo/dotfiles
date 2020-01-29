@@ -71,4 +71,8 @@ set -gx MANPATH '/usr/share/man'
 
 if type -q opam
 	eval (opam env)
+	# Remove . from PATH added by the above
+	if set -l i (contains -i . $PATH)
+		set -e PATH[$i]
+	end
 end
