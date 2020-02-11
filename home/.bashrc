@@ -1,7 +1,3 @@
-function setenv() {
-	export "$1=$2"
-}
-
 export PROMPT_COMMAND=__prompt_command
 
 function __prompt_command() {
@@ -31,35 +27,7 @@ function __prompt_command() {
 	export PS1
 }
 
-case $(uname) in
-	Darwin)
-		case $(uname -m) in
-			iPhone*)
-				_osname='ios'
-			;;
-			*)
-				_osname='osx'
-			;;
-		esac
-	;;
-	Linux)
-		_osname='linux'
-	;;
-esac
-
-if [[ -n $_osname ]]; then
-	source ~/.env."$_osname"
-fi
-
-source ~/.env
+source ~/.environment
 source ~/.aliases
 
-if [[ -n $_osname ]]; then
-	source ~/.aliases."$_osname"
-fi
-
 source ~/.homesick/repos/homeshick/homeshick.sh
-
-export PATH="$PATH:/Applications/Muse"
-
-export DYLD_FALLBACK_LIBRARY_PATH="$DYLD_FALLBACK_LIBRARY_PATH:/Applications/Muse"
