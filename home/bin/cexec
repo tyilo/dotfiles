@@ -1,0 +1,14 @@
+#!/bin/bash
+set -euo pipefail
+
+mkdir -p /tmp/cexec
+
+h=$(sha256sum "$1" | awk '{ print $1 }')
+f="/tmp/cexec/$h"
+if ! [ -f "$f" ]; then
+	c "$1" -o "$f"
+fi
+
+shift
+
+exec "$f" "$@"
