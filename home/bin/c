@@ -7,6 +7,10 @@ for arg in "$@"; do
 		out=${arg%.cpp}
 		break
 	fi
+	if [[ $arg == *.cc ]]; then
+		out=${arg%.cc}
+		break
+	fi
 	if [[ $arg == *.c ]]; then
 		out=${arg%.c}
 		break
