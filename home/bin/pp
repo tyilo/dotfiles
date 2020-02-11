@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+from argparse import ArgumentParser
+
+parser = ArgumentParser(description="Evaluate a python expression and print it")
+parser.add_argument("expr")
+
+args = parser.parse_args()
+
+from math import *
+from builtins import pow
+from random import *
+from fractions import Fraction as F
+from datetime import *
+from collections import *
+
+print(eval(args.expr))
