@@ -18,7 +18,7 @@ end
 ## Remove duplicated
 # set -x PATH (echo $PATH | tr ' ' '\n' | nl | sort -u -k2 | sort -n | cut -f2-)
 
-source ~/.environment
+source ~/.environment 2>&1 | grep -v 'set: Warning: $PATH entry'
 source_aliases ~/.aliases
 
 source "$HOME/.homesick/repos/homeshick/homeshick.fish"
