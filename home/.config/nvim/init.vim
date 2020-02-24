@@ -12,6 +12,8 @@ Plug 'Tyilo/logos.vim'
 Plug 'Tyilo/applescript.vim'
 Plug 'Tyilo/cycript.vim'
 
+Plug 'JuliaEditorSupport/julia-vim'
+
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-eunuch'
 Plug 'machakann/vim-highlightedyank'
