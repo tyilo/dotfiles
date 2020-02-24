@@ -539,7 +539,7 @@ globalkeys = gears.table.join(
 
      --]]
 
-     awful.key({ modkey }, "c", function() awful.spawn.with_shell("chromium") end,
+     awful.key({ modkey }, "c", function() awful.spawn.with_shell("chromium --profile-directory=Default") end,
               {description = "open chromium", group = "custom"}),
      awful.key({ modkey }, "d", function() spawn_focus_cwd("nautilus .") end,
               {description = "open nautilus", group = "custom"}),
