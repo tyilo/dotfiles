@@ -3,6 +3,8 @@ from argparse import ArgumentParser
 
 parser = ArgumentParser(description="Evaluate a python expression and print it")
 parser.add_argument("expr")
+parser.add_argument("-u", "--unpack", action="store_true")
+parser.add_argument("-s", "--sep", default=" ")
 
 args = parser.parse_args()
 
@@ -13,4 +15,8 @@ from fractions import Fraction as F
 from datetime import *
 from collections import *
 
-print(eval(args.expr))
+res = eval(args.expr)
+if args.unpack:
+    print(*res, sep=args.sep)
+else:
+    print(res)
