@@ -1,6 +1,9 @@
+set -g VIRTUALFISH_PLUGINS "auto_activation compat_aliases"
+
 fundle plugin 'oh-my-fish/plugin-bang-bang'
 fundle plugin 'oh-my-fish/theme-bobthefish'
 fundle plugin 'oh-my-fish/plugin-errno'
+fundle plugin 'oh-my-fish/plugin-virtualfish'
 fundle plugin 'jethrokuan/z'
 
 fundle init
