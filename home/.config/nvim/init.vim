@@ -34,29 +34,23 @@ else
 	Plug 'the-lambda-church/coquille', { 'branch': 'pathogen-bundle' }
 endif
 
-"Plug 'autozimu/LanguageClient-neovim', {
-"    \ 'branch': 'next',
-"    \ 'do': 'bash install.sh',
-"    \ }
-
 " (Optional) Multi-entry selection UI.
 Plug 'junegunn/fzf'
 
 if has('nvim')
-	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
-	Plug 'Shougo/deoplete.nvim'
-	Plug 'roxma/nvim-yarp'
-	Plug 'roxma/vim-hug-neovim-rpc'
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
-Plug 'zchee/deoplete-jedi'
 Plug 'lervag/vimtex'
 
-" Plug 'Shougo/deoplete-clangx'
-
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 " Plug 'Mortal/clang_complete', { 'branch': 'follow_reference' }
+
+Plug 'maximbaz/lightline-ale'
 
 Plug 'rust-lang/rust.vim'
 Plug 'cypok/vim-sml'
@@ -74,6 +68,32 @@ Plug 'HerringtonDarkholme/yats.vim'
 "Plug 'Superbil/llvm.vim'
 
 call plug#end()
+
+let g:lightline = {}
+let g:lightline.component_expand = {
+\	'linter_checking': 'lightline#ale#checking',
+\	'linter_infos': 'lightline#ale#infos',
+\	'linter_warnings': 'lightline#ale#warnings',
+\	'linter_errors': 'lightline#ale#errors',
+\	'linter_ok': 'lightline#ale#ok',
+\}
+
+let g:lightline.component_type = {
+\	'linter_checking': 'right',
+\	'linter_infos': 'right',
+\	'linter_warnings': 'warning',
+\	'linter_errors': 'error',
+\	'linter_ok': 'right',
+\}
+
+let g:lightline.active = {
+\	'right': [
+\		['lineinfo'],
+\		['percent'],
+\		['fileformat', 'fileencoding', 'filetype'],
+\		['linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok']
+\	]
+\}
 
 let g:better_whitespace_enabled=0
 let g:strip_whitespace_on_save=1
@@ -129,25 +149,24 @@ set clipboard+=unnamedplus
 silent! colorscheme Tomorrow-Night-Bright
 
 let g:deoplete#enable_at_startup = 1
-
-call deoplete#custom#var('omni', 'input_patterns', {
-\	'tex': g:vimtex#re#deoplete
+call deoplete#custom#option('sources', {
+\	'_': ['ale'],
 \})
 
 let g:ale_lint_on_text_changed = 'never'
-let g:ale_python_flake8_executable = "pyflakes_wrapper"
 
 let g:ale_linters = {
 \	'asm': [],
-\	'cpp': ['clangcheck'],
-\	'python': ['flake8'],
+\	'python': ['pyls'],
 \}
 
-let g:ale_cpp_clangcheck_options = '--extra-arg=-std=c++17'
+let g:ale_cpp_clang_options = '-std=c++17 -Wall'
+let g:ale_cpp_clangtidy_options = '-std=c++17 -Wall'
+let g:ale_cpp_gcc_options = '-std=c++17 -Wall'
 
 let g:ale_fixers = {
 \	'cpp': ['clang-format'],
-\	'python': ['black'],
+\	'python': ['black', 'isort'],
 \	'javascript': ['prettier'],
 \	'css': ['prettier'],
 \	'html': ['prettier'],
@@ -157,10 +176,6 @@ let g:ale_fixers = {
 let g:ale_javascript_prettier_options = '--plugin-search-dir=/home/tyilo/.npm-packages/lib'
 
 set hidden
-let g:LanguageClient_serverCommands = {
-\	'cpp': ['clangd'],
-\	'python': ['pyls'],
-\}
 
 let g:guessindent_prefer_tabs = 1
 autocmd BufReadPost * :GuessIndent
@@ -197,3 +212,7 @@ else
 endif
 
 nnoremap <Leader>f :ALEFix<CR>
+nnoremap <Leader>g :ALEGoToDefinition<CR>
+nnoremap <Leader>r :ALEFindReferences<CR>
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
