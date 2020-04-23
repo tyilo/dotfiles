@@ -9,6 +9,7 @@
 	lineNumber = true
 [core]
 	autocrlf = input
+	excludesfile = ~/.gitignore_global
 [credential]
 	helper = gnome-keyring
 [url "git@github.com:"]
