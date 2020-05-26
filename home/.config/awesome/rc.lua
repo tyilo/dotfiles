@@ -41,42 +41,40 @@ local function spawn_focus_cwd(program)
   end
 end
 
-local last_volume_id = nil
+local info_ids = {}
+local function show_info_text(text, id)
+  local noti = naughty.notify({
+    text = text,
+    font = "monospace",
+    position = "top_middle",
+    replaces_id = info_ids[id],
+    timeout = 1,
+  })
+  if noti ~= nil then
+    info_ids[id] = noti.id
+  end
+end
+
+local function show_bar(fraction, tick, id)
+  local total_ticks = 20
+  local ticks = math.floor(fraction * total_ticks)
+  local bar = string.rep(tick, ticks) .. string.rep(" ", total_ticks - ticks)
+  show_info_text("[" .. bar .. "]", id)
+end
+
 local function show_volume()
   local fd = io.popen("amixer sget Master")
   local status = fd:read("*all")
   fd:close()
 
   local volume = tonumber(string.match(status, "(%d?%d?%d)%%"))
-  -- volume = string.format("% 3d", volume)
 
   status = string.match(status, "%[(o[^%]]*)%]")
 
-  --[[
-  local args = status == "on" and volume or "-m"
-  awful.spawn("volnoti-show " .. args)
-  --]]
-
-  local total = 20
-  local ticks = math.floor(volume / (100 / total))
-  local bar = string.rep("#", ticks) .. string.rep(" ", total - ticks)
-
   if status == "on" then
-    text = "[" .. bar .. "]"
+    show_bar(volume / 100, "#", "volume")
   else
-    text = string.rep("M", total + 2)
-  end
-
-  local noti = naughty.notify({
-    text = text,
-    font = "monospace",
-    position = "top_middle",
-    replaces_id = last_volume_id,
-    timeout = 1,
-  })
-
-  if noti ~= nil then
-    last_volume_id = noti.id
+    show_info_text(string.rep("M", 22), "volume")
   end
 end
 
@@ -98,11 +96,15 @@ local function get_brightness()
   return get_number_output("brightnessctl get")
 end
 
+local function show_brightness()
+  show_bar(get_brightness() / max_brightness, "o", "brightness")
+end
+
 local function set_brightness(value)
   if value < 0 then
     value = 0
   end
-  awful.spawn.with_shell("brightnessctl set " .. value)
+  awful.spawn.easy_async("brightnessctl set " .. value, show_brightness)
 end
 
 local function step_brightness(diff)
