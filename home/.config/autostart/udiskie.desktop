@@ -1,4 +1,4 @@
 [Desktop Entry]
-Exec=/bin/udiskie --tray
+Exec=/bin/udiskie --tray --no-automount
 Name=udiskie
 Type=Application
