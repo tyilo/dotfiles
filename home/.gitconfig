@@ -24,3 +24,5 @@
 	tool = vimdiff3
 [mergetool]
 	path = nvim
+[pull]
+	rebase = false
