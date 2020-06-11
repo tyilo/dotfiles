@@ -27,13 +27,6 @@ Plug 'blankname/vim-fish'
 Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim' }
 Plug 'itchyny/lightline.vim'
 
-if has('nvim')
-	Plug 'https://framagit.org/tyreunom/coquille.git/'
-else
-	Plug 'let-def/vimbufsync'
-	Plug 'the-lambda-church/coquille', { 'branch': 'pathogen-bundle' }
-endif
-
 " (Optional) Multi-entry selection UI.
 Plug 'junegunn/fzf'
 
@@ -188,29 +181,9 @@ vnoremap > >gv
 
 let g:tex_comment_nospell=1
 
-function! ClearCoqHighlight()
-    hi clear CheckedByCoq
-    hi clear SentToCoq
-    hi clear CoqErrorCommand
-    hi clear CoqError
-endfunction
-
-au FileType coq nnoremap <buffer> <Leader>p oProof. reflexivity. Qed.<Esc>
-au FileType coq nnoremap <Leader>l :call CoqLaunch()<CR>
-au FileType coq nnoremap <Leader>r :call CoqStop()<CR> <bar> :call ClearCoqHighlight()<CR> <bar> :call CoqLaunch()<CR> <bar> :call CoqToCursor()<CR>
-au FileType coq nnoremap <Leader>s :call CoqSearch("
 au BufNewFile,BufReadPost *.v :set softtabstop=2 tabstop=2 shiftwidth=2 expandtab
 
 au BufNewFile,BufRead *.tex :set spell textwidth=88
-
-"let g:coquille_auto_move = 'true'
-
-au FileType coq call coquille#FNMapping()
-if has('nvim')
-	"au FileType coq call CoqLaunch()
-else
-	"au FileType coq CoqLaunch
-endif
 
 nnoremap <Leader>f :ALEFix<CR>
 nnoremap <Leader>g :ALEGoToDefinition<CR>
