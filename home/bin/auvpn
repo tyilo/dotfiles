@@ -1,18 +1,39 @@
-#!/bin/sh
+#!/bin/expect -f
+
+set timeout 2
+expect_before timeout {
+	puts "\nFailed to connect, try again."
+	exit 1
+}
 
 # server[/group]
-SERVER=https://remote.au.dk/AU-ACCESS
+set SERVER https://remote.au.dk/ST
 # VPN username
-USERNAME=au522953@uni.au.dk
+set USERNAME au522953@uni.au.dk
 
-SOCKS_PORT=9052
+set SOCKS_PORT 9052
 
-pass show au | \
-/usr/sbin/openconnect \
+spawn /usr/sbin/openconnect \
 	--reconnect-timeout 60 \
 	--script-tun \
 	--script "ocproxy -D $SOCKS_PORT" \
 	-u "$USERNAME" \
-	--passwd-on-stdin \
 	"$SERVER" \
-	--servercert sha256:c131461ac8f287a8b2af6a5d887ddb568dc8a5d6dcd1c57c2552b2e979b2ea7b
+	--servercert sha256:a5f32ab455e65844630f327a2a18eb9f778ad2fe08c90b16cd38b9923c02b503
+
+expect "Password:"
+sleep 1
+send [exec pass show au | head -1]
+send \r
+
+expect "Enter Your Microsoft verification code"
+expect "Response:"
+sleep 1
+send [exec pass otp au_otp]
+send \r
+
+expect "Established DTLS connection"
+
+puts "\nSuccessfully connected."
+
+interact
