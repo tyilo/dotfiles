@@ -64,6 +64,8 @@ Plug 'raimon49/requirements.txt.vim'
 
 call plug#end()
 
+autocmd BufEnter * :syntax sync fromstart
+
 let g:lightline = {}
 let g:lightline.component_expand = {
 \	'linter_checking': 'lightline#ale#checking',
@@ -164,12 +166,11 @@ let g:ale_fixers = {
 \	'cpp': ['clang-format'],
 \	'python': ['black', 'isort'],
 \	'javascript': ['prettier'],
+\	'typescript': ['prettier'],
 \	'css': ['prettier'],
 \	'html': ['prettier'],
 \	'svelte': ['prettier'],
 \}
-
-let g:ale_javascript_prettier_options = '--plugin-search-dir=/home/tyilo/.npm-packages/lib'
 
 set hidden
 

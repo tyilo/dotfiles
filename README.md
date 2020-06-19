@@ -31,3 +31,16 @@
   ```sh
   ~/.homesick/repos/dotfiles/setup
   ```
+
+## Setting up formatters / linters for ale
+
+```sh
+pip install --user pip-tools
+pip-compile ~/.local/requirements.in
+pip-sync --user ~/.local/requirements.txt
+```
+
+```sh
+npm config set prefix ~/.local
+npm install --global prettier svelte prettier-plugin-svelte htmlhint
+```

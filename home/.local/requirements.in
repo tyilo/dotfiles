@@ -1,0 +1,12 @@
+# Formatters
+black
+isort
+
+# Tools
+ipython
+virtualfish
+
+# Libraries
+django
+httpx
+requests
