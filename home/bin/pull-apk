@@ -1,0 +1,8 @@
+#!/usr/bin/env python3
+from subprocess import check_output, run
+
+output = check_output("adb shell pm list packages -f | fzf", shell=True, encoding="utf-8").strip()
+apk_path, package_name = output.split(":")[1].rsplit("=", maxsplit=1)
+path = f"{package_name}.apk"
+run(["adb", "pull", apk_path, path], check=True)
+print(f"Saved to {path}")
