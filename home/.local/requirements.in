@@ -3,6 +3,7 @@ black
 isort
 
 # Tools
+frida-tools
 ipython
 virtualfish
 
@@ -10,3 +11,12 @@ virtualfish
 django
 httpx
 requests
+requests-html
+keyring
+pwntools
+z4-solver
+pulsectl
+hypothesis
+
+# For TeX to unicode in albert
+pylatexenc
