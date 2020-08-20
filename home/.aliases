@@ -38,3 +38,6 @@ alias paste='xclip -selection clipboard -out'
 
 # I can't remember how to spell this command
 alias music='ncmpcpp'
+
+# Quiet gdb
+alias gdb='gdb -q'
