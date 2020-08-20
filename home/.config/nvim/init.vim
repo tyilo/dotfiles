@@ -105,6 +105,9 @@ augroup END
 
 " let b:atp_Viewer = "evince"
 
+au FileType python nnoremap <buffer> <Leader>p oprint(, file=__import__("sys").stderr)<ESC>%a
+au FileType python nnoremap <buffer> <Leader>r O<C-A> = <Esc>p
+
 let g:clang_make_default_keymappings = 0
 au FileType cpp nnoremap <buffer> <Leader>d :call g:ClangGotoDeclaration()<CR>
 au FileType cpp nnoremap <buffer> <Leader>g :call g:ClangFollowReference()<CR>
