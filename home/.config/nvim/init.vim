@@ -127,6 +127,9 @@ call SetDefaultIndent()
 set number
 set wrap
 
+set cursorcolumn
+set cursorline
+
 set undofile
 set undodir=$HOME/.vimundo
 
