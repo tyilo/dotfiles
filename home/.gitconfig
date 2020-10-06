@@ -25,4 +25,4 @@
 [mergetool]
 	path = nvim
 [pull]
-	rebase = true
+	rebase = false
