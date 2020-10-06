@@ -189,6 +189,8 @@ autocmd Filetype python set softtabstop=4 tabstop=4 shiftwidth=4 expandtab
 vnoremap < <gv
 vnoremap > >gv
 
+let g:tex_flavor = 'latex'
+
 let g:tex_comment_nospell=1
 
 au BufNewFile,BufReadPost *.v :set softtabstop=2 tabstop=2 shiftwidth=2 expandtab
