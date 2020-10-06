@@ -581,7 +581,10 @@ globalkeys = gears.table.join(
 
     -- Print screen
      awful.key({}, "Print", function() awful.spawn.with_shell("flameshot gui") end,
-              {description = "take screenshot", group = "custom"})
+              {description = "take screenshot", group = "custom"}),
+
+     awful.key({ modkey }, "l", function() awful.spawn.with_shell("systemctl suspend") end,
+              {description = "lock computer", group = "custom"})
 )
 
 clientkeys = gears.table.join(
