@@ -193,6 +193,7 @@ let g:tex_flavor = 'latex'
 
 let g:tex_comment_nospell=1
 
+au BufNewFile,BufReadPost *.html,*.js,*.css :set softtabstop=2 tabstop=2 shiftwidth=2 expandtab
 au BufNewFile,BufReadPost *.v :set softtabstop=2 tabstop=2 shiftwidth=2 expandtab
 
 au BufNewFile,BufRead *.tex :set spell textwidth=88
