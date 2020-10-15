@@ -1,6 +1,6 @@
 #!/bin/expect -f
 
-set timeout 2
+set timeout 5
 expect_before timeout {
 	puts "\nFailed to connect, try again."
 	exit 1
@@ -23,13 +23,13 @@ spawn /usr/sbin/openconnect \
 
 expect "Password:"
 sleep 1
-send [exec pass show au | head -1]
+send [exec rbw get au]
 send \r
 
 expect "Enter Your Microsoft verification code"
 expect "Response:"
 sleep 1
-send [exec pass otp au_otp]
+send [exec rbw code au]
 send \r
 
 expect "Established DTLS connection"
