@@ -41,3 +41,5 @@ alias music='ncmpcpp'
 
 # Quiet gdb
 alias gdb='gdb -q'
+
+alias ip='ip -color -brief'
