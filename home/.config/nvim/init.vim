@@ -160,8 +160,11 @@ let g:ale_lint_on_text_changed = 'never'
 
 let g:ale_linters = {
 \	'asm': [],
+\   'cpp': ['cc'],
 \	'python': ['pyls'],
 \}
+
+let g:ale_cpp_cc_executable = 'g++'
 
 let g:ale_cpp_clang_options = '-std=c++17 -Wall'
 let g:ale_cpp_clangd_options = '-std=c++17 -Wall'
