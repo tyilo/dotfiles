@@ -1,4 +1,0 @@
-#!/bin/bash
-export DISPLAY=:0
-export XAUTHORITY=/run/user/"$(id -u)"/gdm/Xauthority
-exec slock
