@@ -11,7 +11,7 @@ alias tree='tree -C'
 alias grep='grep --color=auto --text'
 
 # Better diff format
-alias diff="colordiff --unified"
+alias diff="diff --color=auto --unified"
 
 # No invalid sequences
 alias sed="env LANG=C sed"
