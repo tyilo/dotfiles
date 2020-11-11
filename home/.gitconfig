@@ -20,6 +20,8 @@
 	insteadOf = https://gitlab.au.dk/
 [diff]
 	tool = vimdiff3
+	colorMoved = default
+	colormovedws = allow-indentation-change
 [merge]
 	tool = vimdiff3
 [mergetool]
