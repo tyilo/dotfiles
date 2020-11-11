@@ -178,8 +178,11 @@ let g:ale_fixers = {
 \	'javascript': ['prettier'],
 \	'typescript': ['prettier'],
 \	'css': ['prettier'],
+\   'sccs': ['prettier'],
 \	'html': ['prettier'],
 \	'svelte': ['prettier'],
+\   'yaml': ['prettier'],
+\   'markdown': ['prettier'],
 \}
 
 set hidden
