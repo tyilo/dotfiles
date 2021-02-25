@@ -1,0 +1,20 @@
+#!/bin/bash
+
+out=a.out
+
+for arg in "$@"; do
+	if [[ $arg == *.cpp ]]; then
+		out=${arg%.cpp}
+		break
+	fi
+	if [[ $arg == *.cc ]]; then
+		out=${arg%.cc}
+		break
+	fi
+	if [[ $arg == *.c ]]; then
+		out=${arg%.c}
+		break
+	fi
+done
+
+exec g++ -Wall -Wconversion -Wfatal-errors -std=c++17 -O3 -o "$out" "$@"

@@ -1,0 +1,3 @@
+#!/bin/bash
+CAP="cap_sys_ptrace"
+exec sudo -E capsh --caps="cap_setpcap,cap_setuid,cap_setgid+ep $CAP+eip" --keep=1 --user=tyilo --addamb="$CAP" --shell=/usr/bin/gdb -- -p "$@"
