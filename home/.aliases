@@ -43,3 +43,5 @@ alias music='ncmpcpp'
 alias gdb='gdb -q'
 
 alias ip='ip -color -brief'
+
+alias cat='bat'
