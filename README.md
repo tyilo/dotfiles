@@ -8,12 +8,12 @@
   pacman -Syu --needed base-devel git openssh fish neovim python-neovim
   ```
 
-- (Optional) Install [`yay`](https://github.com/Jguer/yay):
+- (Optional) Install [`paru`](https://github.com/Morganamilo/paru):
 
   ```sh
   cd /tmp
-  git clone https://aur.archlinux.org/yay.git
-  cd yay
+  git clone https://aur.archlinux.org/paru.git
+  cd paru
   makepkg -si
   ```
 
