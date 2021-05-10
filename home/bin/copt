@@ -17,4 +17,4 @@ for arg in "$@"; do
 	fi
 done
 
-exec g++ -Wall -Wconversion -Wfatal-errors -std=c++17 -O3 -o "$out" "$@"
+exec g++ -Wall -Wconversion -Wfatal-errors -g -O2 -std=gnu++17 -static -o "$out" "$@"
