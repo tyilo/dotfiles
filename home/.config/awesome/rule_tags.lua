@@ -2,6 +2,7 @@
 
 local ordered_mapping = {
 	-- {class, tag name}
+	{"Slack", "Slack"},
 	{"discord", "Discord"},
 	{"Caprine", "Messenger"},
 	{"Evolution", "Mail"},
