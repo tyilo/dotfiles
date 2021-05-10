@@ -8,6 +8,7 @@ parser.add_argument("-s", "--sep", default=" ")
 
 args = parser.parse_args()
 
+import sys
 from math import *
 from builtins import pow
 from random import *
@@ -15,7 +16,24 @@ from fractions import Fraction as F
 from datetime import *
 from collections import *
 
-res = eval(args.expr)
+while True:
+    try:
+        res = eval(args.expr)
+        break
+    except NameError as e:
+        msg = e.args[0]
+        name = msg.split("'")[1]
+        try:
+            exec(f"import {name}")
+            print(f"Auto-imported '{name}'", file=sys.stderr)
+            continue
+        except ImportError:
+            pass
+
+        raise e
+        break
+
+
 if args.unpack:
     print(*res, sep=args.sep)
 else:
