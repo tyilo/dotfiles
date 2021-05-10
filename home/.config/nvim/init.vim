@@ -167,10 +167,14 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_linters = {
 \	'asm': [],
 \   'cpp': ['cc'],
-\	'python': ['pyls'],
+\	'python': ['pyls', 'mypy'],
+\	'rust': ['analyzer', 'cargo'],
 \}
 
+let g:rust_cargo_use_clippy = 1
+
 let g:ale_cpp_cc_executable = 'g++'
+let g:ale_cpp_cc_options = '-std=c++17 -Wall'
 
 let g:ale_cpp_clang_options = '-std=c++17 -Wall'
 let g:ale_cpp_clangd_options = '-std=c++17 -Wall'
@@ -189,6 +193,8 @@ let g:ale_fixers = {
 \	'svelte': ['prettier'],
 \   'yaml': ['prettier'],
 \   'markdown': ['prettier'],
+\   'json': ['prettier'],
+\   'rust': ['rustfmt'],
 \}
 
 set hidden
@@ -213,5 +219,8 @@ au BufNewFile,BufRead *.tex :set spell textwidth=88
 nnoremap <Leader>f :ALEFix<CR>
 nnoremap <Leader>g :ALEGoToDefinition<CR>
 nnoremap <Leader>r :ALEFindReferences<CR>
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+nmap <silent> <Leader>k <Plug>(ale_previous_wrap)
+nmap <silent> <Leader>j <Plug>(ale_next_wrap)
+nmap <silent> <Leader>l <Plug>(ale_last)
+nmap <silent> <Leader>h <Plug>(ale_first)
