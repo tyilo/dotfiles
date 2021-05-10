@@ -50,6 +50,7 @@ Plug 'cypok/vim-sml'
 Plug 'petRUShka/vim-sage'
 Plug 'udalov/kotlin-vim'
 Plug 'evanleck/vim-svelte'
+Plug 'cespare/vim-toml'
 
 Plug 'FStarLang/VimFStar', { 'for': 'fstar' }
 
