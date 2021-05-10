@@ -541,8 +541,8 @@ globalkeys = gears.table.join(
 
      --]]
 
-     awful.key({ modkey }, "c", function() awful.spawn.with_shell("chromium --profile-directory=Default") end,
-              {description = "open chromium", group = "custom"}),
+     awful.key({ modkey }, "c", function() awful.spawn.with_shell("firefox-developer-edition") end,
+              {description = "open firefox", group = "custom"}),
      awful.key({ modkey }, "d", function() spawn_focus_cwd("nautilus .") end,
               {description = "open nautilus", group = "custom"}),
 
@@ -583,7 +583,10 @@ globalkeys = gears.table.join(
      awful.key({}, "Print", function() awful.spawn.with_shell("flameshot gui") end,
               {description = "take screenshot", group = "custom"}),
 
-     awful.key({ modkey }, "l", function() awful.spawn.with_shell("systemctl suspend") end,
+     -- awful.key({}, "Super_L", function() awful.spawn.with_shell("xrandr --auto") end,
+     --         {description = "xrandr auto", group = "custom"}),
+
+     awful.key({ modkey }, ";", function() awful.spawn.with_shell("systemctl suspend") end,
               {description = "lock computer", group = "custom"})
 )
 
