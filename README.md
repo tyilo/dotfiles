@@ -5,7 +5,7 @@
 - Install required packages:
 
   ```sh
-  pacman -Syu --needed base-devel git openssh fish neovim python-neovim
+  pacman -Syu --needed base-devel git openssh fish neovim python-neovim starship
   ```
 
 - (Optional) Install [`paru`](https://github.com/Morganamilo/paru):
