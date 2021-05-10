@@ -738,7 +738,10 @@ awful.rules.rules = {
           "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
           "Wpa_gui",
           "veromix",
-          "xtightvncviewer"},
+          "xtightvncviewer",
+
+          "MEGAsync",
+        },
 
         -- Note that the name property shown in xprop might be set slightly after creation of the client
         -- and the name shown there might not match defined rules here.
@@ -763,6 +766,35 @@ awful.rules.rules = {
           "Ulauncher",
         },
       }, properties = { border_width = 0 },
+    },
+
+    -- Always show on top
+    { rule_any = {
+        name = {
+          "HearthstoneOverlay",
+          "overwolf.exe",
+          "The HearthArena.com Overwolf App",
+        },
+      },
+      properties = {
+        ontop = true,
+      }
+    },
+
+    -- Fix for IntelliJ IDEs
+    { rule = {
+        class = "jetbrains-.*",
+        instance = "sun-awt-X11-XWindowPeer",
+        name = "win.*",
+    },
+      properties = {
+        floating = true,
+        focus = true,
+        focusable = false,
+        ontop = true,
+        placement = awful.placement.restore,
+        buttons = {},
+     }
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
