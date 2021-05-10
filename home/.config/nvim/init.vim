@@ -58,6 +58,8 @@ Plug 'HerringtonDarkholme/yats.vim'
 
 Plug 'raimon49/requirements.txt.vim'
 
+Plug 'gioele/vim-autoswap'
+
 " Plug 'git://git.code.sf.net/p/atp-vim/code', { 'as': 'atp-vim' }
 
 " This overrides my builtin default indent :/
@@ -151,6 +153,9 @@ cmap w!! w suda://%
 set clipboard+=unnamedplus
 
 silent! colorscheme Tomorrow-Night-Bright
+
+" Needed for autoswap
+set title
 
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option('sources', {
