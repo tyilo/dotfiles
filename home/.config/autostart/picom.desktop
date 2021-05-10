@@ -1,4 +1,4 @@
 [Desktop Entry]
-Exec=/bin/picom
+Exec=/bin/picom --backend glx
 Name=picom
 Type=Application
