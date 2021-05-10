@@ -35,9 +35,7 @@
 ## Setting up formatters / linters for ale
 
 ```sh
-pip install --user pip-tools
-pip-compile ~/.local/requirements.in
-pip-sync --user ~/.local/requirements.txt
+pip install --user -r ~/.local/requirements.txt
 ```
 
 ```sh

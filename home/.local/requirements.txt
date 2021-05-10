@@ -1,16 +1,8 @@
-# Formatters
-black
-isort
-
 # Tools
 frida-tools
-ipython
 virtualfish
 
 # Libraries
-django
-httpx
-requests
 requests-html
 keyring
 pwntools
