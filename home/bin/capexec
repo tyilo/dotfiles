@@ -4,4 +4,4 @@ cap="$1"
 exec_path=$(type -p "$2")
 shift
 shift
-exec sudo -E capsh --caps="cap_setpcap,cap_setuid,cap_setgid+ep $cap+eip" --keep=1 --user=tyilo --addamb="$cap" --shell="$exec_path" -- "$@"
+exec sudo -E capsh --caps="cap_setpcap,cap_setuid,cap_setgid+ep $cap+eip" --keep=1 --user="$USER" --addamb="$cap" --shell="$exec_path" -- "$@"
