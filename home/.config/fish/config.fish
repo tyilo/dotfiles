@@ -1,7 +1,8 @@
+starship init fish | source
+
 set -g VIRTUALFISH_PLUGINS "auto_activation compat_aliases"
 
 fundle plugin 'oh-my-fish/plugin-bang-bang'
-fundle plugin 'oh-my-fish/theme-bobthefish'
 fundle plugin 'oh-my-fish/plugin-errno'
 fundle plugin 'oh-my-fish/plugin-virtualfish'
 fundle plugin 'jethrokuan/z'
@@ -25,13 +26,6 @@ source ~/.environment 2>&1 | grep -v 'set: Warning: $PATH entry'
 source_aliases ~/.aliases
 
 source "$HOME/.homesick/repos/homeshick/homeshick.fish"
-
-# bobthefish config
-# https://github.com/oh-my-fish/theme-bobthefish
-set -g theme_display_vagrant yes
-set -g theme_display_date no
-set -g theme_show_exit_status yes
-set -g theme_nerd_fonts yes
 
 set -gx MANPATH '/usr/share/man'
 
