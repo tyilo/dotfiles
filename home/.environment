@@ -1,5 +1,20 @@
-export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.luarocks/bin:$HOME/Android/Sdk/platform-tools:$HOME/Android/Sdk/build-tools/latest:$PATH"
+export _PATH="$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.luarocks/bin:$HOME/.cargo/bin"
 
-export EDITOR=vim
-export BROWSER=chromium
+export PATH="$PATH:$HOME/.local/share/gem/ruby/2.7.0/bin"
+
+# Android
+export PATH="$PATH:$HOME/Android/Sdk/platform-tools"
+export PATH="$PATH:$HOME/Android/Sdk/build-tools/latest"
+export PATH="$PATH:$HOME/Android/Sdk/cmdline-tools/latest/bin"
+
+export PATH="$PATH:$_PATH"
+
+export EDITOR=nvim
+export BROWSER=firefox-developer-edition
 export JQ_COLORS="0;31"
+
+# For Karma
+export CHROME_BIN=/bin/chromium
+
+export RUSTFLAGS="-C target-cpu=native"
