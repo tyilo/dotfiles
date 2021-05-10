@@ -1,6 +1,2 @@
 [status]
 disabled = false
-
-[python]
-# See https://github.com/starship/starship/pull/2248
-format = "via [${symbol}${pyenv_prefix}(${version} )(\\($virtualenv\\) )]($style)"
