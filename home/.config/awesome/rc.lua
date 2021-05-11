@@ -104,7 +104,7 @@ local function set_brightness(value)
   if value < 0 then
     value = 0
   end
-  awful.spawn.easy_async("brightnessctl set " .. value, show_brightness)
+  awful.spawn.easy_async("brightnessctl set " .. math.floor(value + 0.5), show_brightness)
 end
 
 local function step_brightness(diff)
@@ -123,7 +123,7 @@ end
 
 local function decrease_brightness()
   local b = get_brightness()
-  if 1 < b and b <= brightness_step then
+  if 1 < b and b <= brightness_step + 0.5 then
     set_brightness(1)
   else
     step_brightness(-1)
