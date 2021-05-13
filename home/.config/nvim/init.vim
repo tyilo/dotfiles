@@ -60,6 +60,8 @@ Plug 'raimon49/requirements.txt.vim'
 
 Plug 'gioele/vim-autoswap'
 
+Plug 'editorconfig/editorconfig-vim'
+
 " Plug 'git://git.code.sf.net/p/atp-vim/code', { 'as': 'atp-vim' }
 
 " This overrides my builtin default indent :/
