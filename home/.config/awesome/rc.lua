@@ -274,7 +274,7 @@ separator = wibox.widget {
 }
 
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock()
+mytextclock = wibox.widget.textclock(" %a %b %d, %H:%M:%S ", 0.1)
 calendar({}):attach(mytextclock)
 
 -- Create a wibox for each screen and add it
