@@ -1,0 +1,11 @@
+#!/bin/bash
+set -euo pipefail
+
+fetch_url=$(git remote show origin | sed -n 's/.*Fetch URL: //p')
+
+if [[ $fetch_url == git@* ]]; then
+	fetch_url=${fetch_url/:/\/}
+	fetch_url="https://${fetch_url#git@}"
+fi
+
+exec xdg-open "$fetch_url"
