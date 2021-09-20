@@ -1,7 +1,7 @@
-FROM archlinux/base
+FROM archlinux:base
 
 # Install dependencies
-RUN pacman -Syu --needed --noconfirm base-devel git openssh fish neovim python-neovim
+RUN pacman -Syu --needed --noconfirm base-devel git openssh fish neovim python-neovim starship
 
 # Install us_da-layout
 RUN useradd builduser
@@ -18,5 +18,8 @@ RUN yes | ~/.homesick/repos/homeshick/bin/homeshick clone Tyilo/dotfiles
 
 # Run setup script
 RUN ~/.homesick/repos/dotfiles/setup
+
+# Test if fish config works
+RUN fish ~/.config/fish/config.fish
 
 CMD ["fish"]
