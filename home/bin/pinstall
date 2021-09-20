@@ -1,0 +1,3 @@
+#!/bin/bash
+set -euo pipefail
+paru -Slq | fzf --multi --preview 'paru -Si {1}' | xargs --no-run-if-empty --open-tty --interactive -- paru -S
