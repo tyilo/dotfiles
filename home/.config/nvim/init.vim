@@ -2,17 +2,17 @@ let g:python3_host_prog = "/usr/bin/python3"
 
 let g:clang_library_path = "/usr/lib"
 
-if has('nvim')
-	call plug#begin('~/.local/share/nvim/plugged')
-else
-	call plug#begin('~/.vim/plugged')
-endif
+call plug#begin()
 
-Plug 'Tyilo/logos.vim'
-Plug 'Tyilo/applescript.vim'
-Plug 'Tyilo/cycript.vim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-Plug 'JuliaEditorSupport/julia-vim'
+Plug 'github/copilot.vim'
+
+" Plug 'Tyilo/logos.vim'
+" Plug 'Tyilo/applescript.vim'
+" Plug 'Tyilo/cycript.vim'
+
+" Plug 'JuliaEditorSupport/julia-vim'
 
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-eunuch'
@@ -23,7 +23,7 @@ Plug 'lambdalisue/suda.vim'
 Plug 'bogado/file-line'
 Plug 'Cimbali/vim-better-whitespace'
 Plug 'ogier/guessindent'
-Plug 'blankname/vim-fish'
+" Plug 'blankname/vim-fish'
 Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim' }
 Plug 'itchyny/lightline.vim'
 
@@ -45,14 +45,15 @@ Plug 'dense-analysis/ale'
 
 Plug 'maximbaz/lightline-ale'
 
-Plug 'rust-lang/rust.vim'
-Plug 'cypok/vim-sml'
-Plug 'petRUShka/vim-sage'
-Plug 'udalov/kotlin-vim'
-Plug 'evanleck/vim-svelte'
-Plug 'cespare/vim-toml'
+" Plug 'rust-lang/rust.vim'
+" Plug 'cypok/vim-sml'
+" Plug 'petRUShka/vim-sage'
+" Plug 'udalov/kotlin-vim'
+" Plug 'evanleck/vim-svelte'
+" Plug 'cespare/vim-toml'
+Plug 'meatballs/vim-xonsh'
 
-Plug 'FStarLang/VimFStar', { 'for': 'fstar' }
+" Plug 'FStarLang/VimFStar', { 'for': 'fstar' }
 
 Plug 'HerringtonDarkholme/yats.vim'
 
@@ -61,6 +62,8 @@ Plug 'raimon49/requirements.txt.vim'
 Plug 'gioele/vim-autoswap'
 
 Plug 'editorconfig/editorconfig-vim'
+
+Plug 'elixir-editors/vim-elixir'
 
 " Plug 'git://git.code.sf.net/p/atp-vim/code', { 'as': 'atp-vim' }
 
@@ -169,7 +172,7 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_linters = {
 \	'asm': [],
 \   'cpp': ['cc'],
-\	'python': ['pyls', 'mypy'],
+\	'python': ['pylsp', 'mypy'],
 \	'rust': ['analyzer', 'cargo'],
 \}
 
@@ -222,7 +225,9 @@ nnoremap <Leader>f :ALEFix<CR>
 nnoremap <Leader>g :ALEGoToDefinition<CR>
 nnoremap <Leader>r :ALEFindReferences<CR>
 
-nmap <silent> <Leader>k <Plug>(ale_previous_wrap)
-nmap <silent> <Leader>j <Plug>(ale_next_wrap)
-nmap <silent> <Leader>l <Plug>(ale_last)
-nmap <silent> <Leader>h <Plug>(ale_first)
+nnoremap <silent> <Leader>k <Plug>(ale_previous_wrap)
+nnoremap <silent> <Leader>j <Plug>(ale_next_wrap)
+nnoremap <silent> <Leader>l <Plug>(ale_last)
+nnoremap <silent> <Leader>h <Plug>(ale_first)
+
+lua require'lua_init'

@@ -36,3 +36,5 @@ if type -q opam
 		set -e PATH[$i]
 	end
 end
+
+ulimit -s unlimited

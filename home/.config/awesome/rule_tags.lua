@@ -5,7 +5,7 @@ local ordered_mapping = {
 	{"Slack", "Slack"},
 	{"discord", "Discord"},
 	{"Caprine", "Messenger"},
-	{"Evolution", "Mail"},
+	{"Thunderbird", "Mail"},
 }
 
 local tagnames = {}

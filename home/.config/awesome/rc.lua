@@ -32,6 +32,7 @@ local vicious = require("vicious")
 local battery_widget = require('awesome-wm-widgets.battery-widget.battery')
 -- local printer_jobs_widget = require('printer-jobs-widget')
 -- local unread_emails_widget = require('unread-emails-widget')
+-- local bluetooth_headset_battery_widget = require('bluetooth-headset-battery-widget')
 
 local function spawn_focus_cwd(program)
   if client.focus and client.focus.pid ~= nil then
@@ -274,7 +275,7 @@ separator = wibox.widget {
 }
 
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock(" %a %b %d, %H:%M:%S ", 0.1)
+mytextclock = wibox.widget.textclock(" %a %b %d, %H:%M:%S ", 1)
 calendar({}):attach(mytextclock)
 
 -- Create a wibox for each screen and add it
@@ -388,6 +389,8 @@ awful.screen.connect_for_each_screen(function(s)
             -- cpu_widget,
             -- ram_widget,
             -- volume_widget,
+            -- bluetooth_headset_battery_widget,
+            seperator,
             battery_widget,
             mytextclock,
             s.mylayoutbox,
@@ -774,6 +777,7 @@ awful.rules.rules = {
     { rule_any = {
         name = {
           "HearthstoneOverlay",
+          "hearthstonedecktracker.exe",
           "overwolf.exe",
           "The HearthArena.com Overwolf App",
         },
