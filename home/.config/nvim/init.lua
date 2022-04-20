@@ -37,6 +37,7 @@ require('packer').startup(function(use)
   use 'saadparwaiz1/cmp_luasnip'
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
   use 'tpope/vim-sleuth'
+  use 'tpope/vim-eunuch'
 
   if packer_bootstrap then
     require('packer').sync()
