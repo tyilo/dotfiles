@@ -45,3 +45,6 @@ alias gdb='gdb -q'
 alias ip='ip -color -brief'
 
 alias cat='bat'
+
+# See https://github.com/BurntSushi/ripgrep/issues/623
+alias rg="rg --hidden --glob '!.git'"
