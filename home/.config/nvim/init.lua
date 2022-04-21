@@ -47,6 +47,8 @@ end)
 vim.o.tabstop = 4
 vim.o.shiftwidth = 0
 
+vim.o.clipboard = 'unnamedplus'
+
 --Set highlight on search
 vim.o.hlsearch = true
 
