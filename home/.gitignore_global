@@ -1,1 +1,6 @@
 .venv
+.attach_pid*
+.idea
+*.iml
+*.args
+tags
