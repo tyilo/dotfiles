@@ -1,0 +1,4 @@
+#!/bin/bash
+export DISPLAY=:0
+export XAUTHORITY=/run/user/1000/gdm/Xauthority
+/usr/bin/sudo -u tyilo /bin/bash -c 'XSECURELOCK_SHOW_DATETIME=1 XSECURELOCK_PASSWORD_PROMPT=asterisks /usr/bin/xsecurelock'

@@ -1,0 +1,8 @@
+[Unit]
+Description=Yubikey Removal
+
+[Service]
+ExecStart=/usr/bin/lock-with-xsecurelock
+
+[Install]
+WantedBy=multi-user.target
