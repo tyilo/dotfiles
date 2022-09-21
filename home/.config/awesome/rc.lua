@@ -36,7 +36,7 @@ local battery_widget = require('awesome-wm-widgets.battery-widget.battery')
 
 local function spawn_focus_cwd(program)
   if client.focus and client.focus.pid ~= nil then
-    awful.spawn.with_shell('cd "$(readlink /proc/"$(pgrep -P ' .. client.focus.pid .. ')"/cwd)"; ' .. program)
+    awful.spawn.with_shell('cd "$(readlink /proc/"$(pgrep -P ' .. client.focus.pid .. ' | tail -1)"/cwd)"; ' .. program)
   else
     awful.spawn.with_shell(program)
   end
