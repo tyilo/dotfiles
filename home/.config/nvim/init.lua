@@ -153,6 +153,9 @@ vim.cmd [[
   augroup end
 ]]
 
+--kattis-test
+vim.api.nvim_set_keymap('n', '<leader>k', ':!PYTHONUNBUFFERED=1 kattis-test %', { noremap = true })
+
 --Map blankline
 vim.g.indent_blankline_char = '┊'
 vim.g.indent_blankline_filetype_exclude = { 'help', 'packer' }
