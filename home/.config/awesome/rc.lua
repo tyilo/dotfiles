@@ -775,6 +775,9 @@ awful.rules.rules = {
 
     -- Always show on top
     { rule_any = {
+        class = {
+          "hearthstonedecktracker.exe"
+        },
         name = {
           "HearthstoneOverlay",
           "hearthstonedecktracker.exe",
