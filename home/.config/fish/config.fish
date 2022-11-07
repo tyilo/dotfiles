@@ -1,13 +1,19 @@
-starship init fish | source
+source /opt/asdf-vm/asdf.fish
+# Fix for sudo
+set -x ASDF_DATA_DIR "$HOME/.asdf"
 
-set -g VIRTUALFISH_PLUGINS "auto_activation compat_aliases"
+if status is-interactive
+	starship init fish | source
 
-fundle plugin 'oh-my-fish/plugin-bang-bang'
-fundle plugin 'oh-my-fish/plugin-errno'
-fundle plugin 'oh-my-fish/plugin-virtualfish'
-fundle plugin 'jethrokuan/z'
+	set -g VIRTUALFISH_PLUGINS "auto_activation compat_aliases"
 
-fundle init
+	fundle plugin 'oh-my-fish/plugin-bang-bang'
+	fundle plugin 'oh-my-fish/plugin-errno'
+	fundle plugin 'oh-my-fish/plugin-virtualfish'
+	fundle plugin 'jethrokuan/z'
+
+	fundle init
+end
 
 function source_aliases
 	# sed 's/alias \([^=]*\)=/abbr -a \1 /g' $argv[1] | source
