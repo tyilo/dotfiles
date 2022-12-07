@@ -64,15 +64,17 @@ local function show_bar(fraction, tick, id)
 end
 
 local function show_volume()
-  local fd = io.popen("amixer sget Master")
+  local fd = io.popen("pamixer --get-mute --get-volume")
   local status = fd:read("*all")
   fd:close()
 
-  local volume = tonumber(string.match(status, "(%d?%d?%d)%%"))
+  local word_gen = string.gmatch(status, "[^%s]+")
+  local mute_status = word_gen()
+  local volume_str = word_gen()
 
-  status = string.match(status, "%[(o[^%]]*)%]")
+  local volume = tonumber(volume_str)
 
-  if status == "on" then
+  if mute_status == "false" then
     show_bar(volume / 100, "#", "volume")
   else
     show_info_text(string.rep("M", 22), "volume")
@@ -551,13 +553,13 @@ globalkeys = gears.table.join(
 
       -- Volume Keys
       awful.key({}, "XF86AudioLowerVolume", function ()
-        awful.spawn.easy_async("amixer -q -D pulse sset Master unmute 5%-", show_volume)
+        awful.spawn.easy_async("pamixer --decrease 5", show_volume)
       end),
       awful.key({}, "XF86AudioRaiseVolume", function ()
-        awful.spawn.easy_async("amixer -q -D pulse sset Master unmute 5%+", show_volume)
+        awful.spawn.easy_async("pamixer --increase 5", show_volume)
       end),
       awful.key({}, "XF86AudioMute", function ()
-        awful.spawn.easy_async("amixer -D pulse set Master +1 toggle", show_volume)
+        awful.spawn.easy_async("pamixer --toggle-mute", show_volume)
       end),
       -- Media Keys
       awful.key({}, "XF86AudioPlay", function()
