@@ -1,6 +1,11 @@
 if status is-interactive
 	starship init fish | source
 
+	set -gx ATUIN_NOBIND "true"
+	atuin init fish | source
+	bind \cr _atuin_search
+	bind -M insert \cr _atuin_search
+
 	set -g VIRTUALFISH_PLUGINS "auto_activation compat_aliases"
 
 	fundle plugin 'oh-my-fish/plugin-bang-bang'
