@@ -1,6 +1,6 @@
 [user]
 	name = Asger Hautop Drewsen
-	email = asgerdrewsen@gmail.com
+	email = asger@tyilo.com
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	g = grep --break --heading --line-number
