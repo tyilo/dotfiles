@@ -489,7 +489,7 @@ globalkeys = gears.table.join(
               {description = "decrease the number of columns", group = "layout"}),
 
     -- Custom modkey + space
-    awful.key({ modkey,           }, "space", function () awful.spawn.with_shell("albert toggle") end,
+    awful.key({ modkey,           }, "space", function () awful.spawn.with_shell("ulauncher-toggle") end,
               {description = "select next", group = "layout"}),
 
     awful.key({ modkey,           }, "a", function () awful.layout.inc( 1)                end,
