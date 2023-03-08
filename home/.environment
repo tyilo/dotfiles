@@ -17,4 +17,4 @@ export JQ_COLORS="0;31"
 # For Karma
 export CHROME_BIN=/bin/chromium
 
-export RUSTFLAGS="-C opt-level=2 -C target-cpu=native"
+export RUSTFLAGS="-C target-cpu=native"
