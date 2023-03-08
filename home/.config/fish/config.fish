@@ -1,7 +1,3 @@
-source /opt/asdf-vm/asdf.fish
-# Fix for sudo
-set -x ASDF_DATA_DIR "$HOME/.asdf"
-
 if status is-interactive
 	starship init fish | source
 
@@ -34,6 +30,8 @@ source_aliases ~/.aliases
 source "$HOME/.homesick/repos/homeshick/homeshick.fish"
 
 set -gx MANPATH '/usr/share/man'
+
+rtx activate -s fish | source
 
 if type -q opam
 	eval (opam env)
