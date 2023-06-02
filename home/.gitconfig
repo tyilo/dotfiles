@@ -5,11 +5,14 @@
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	g = grep --break --heading --line-number
 	clone-branches = "! git branch -a | sed -n \"/\\/HEAD /d; /\\/master$/d; /remotes/p;\" | xargs -L1 git checkout -t; git checkout master"
+	merge-diff = "! git merge-tree $(git merge-base $1 $2) $1 $2 #"
 [grep]
 	lineNumber = true
 [core]
 	autocrlf = input
 	excludesfile = ~/.gitignore_global
+[tag]
+	sort = authordate
 [url "git@github.com:"]
 	pushInsteadOf = https://github.com/
 [url "git@gitlab.com:"]

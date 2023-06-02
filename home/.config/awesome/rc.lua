@@ -489,7 +489,7 @@ globalkeys = gears.table.join(
               {description = "decrease the number of columns", group = "layout"}),
 
     -- Custom modkey + space
-    awful.key({ modkey,           }, "space", function () awful.spawn.with_shell("ulauncher-toggle") end,
+    awful.key({ modkey,           }, "space", function () awful.spawn.with_shell("albert toggle") end,
               {description = "select next", group = "layout"}),
 
     awful.key({ modkey,           }, "a", function () awful.layout.inc( 1)                end,
@@ -604,6 +604,36 @@ clientkeys = gears.table.join(
             c:raise()
         end,
         {description = "toggle fullscreen", group = "client"}),
+    awful.key({ modkey, "Shift"   }, "f",
+        function (c)
+            if c.floating then
+               c.floating = false
+               return
+            end
+
+            c.floating = true
+            local geo = {}
+            geo.x = screen[1].geometry.x
+            geo.y = screen[1].geometry.y
+            geo.width = screen[1].geometry.width
+            geo.height = screen[1].geometry.height
+            geo.x2 = geo.x + geo.width
+            geo.y2 = geo.y + geo.height
+            for s in screen do
+                local geo2 = s.geometry
+                geo.x = math.min(geo.x, geo2.x)
+                geo.y = math.min(geo.y, geo2.y)
+                geo.x2 = math.max(geo.x2, geo2.x + geo2.width)
+                geo.y2 = math.max(geo.y2, geo2.y + geo2.height)
+            end
+            c:geometry{
+                x = geo.x,
+                y = geo.y,
+                width = geo.x2 - geo.x,
+                height = geo.y2 - geo.y
+            }
+        end,
+    {description = "toggle all monitor fullscreen", group = "client"}),
     awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
               {description = "close", group = "client"}),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
