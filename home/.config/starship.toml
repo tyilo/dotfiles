@@ -3,3 +3,9 @@ disabled = true
 
 [status]
 disabled = false
+
+[custom.http_toolkit]
+format = 'proxied to [$symbol($output )]($style)'
+symbol = "\U000f0820 "
+command = 'echo http_toolkit'
+when = 'test "$HTTP_TOOLKIT_ACTIVE" = "true"'
