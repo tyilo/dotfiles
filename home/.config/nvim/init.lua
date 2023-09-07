@@ -82,6 +82,8 @@ require('packer').startup(function(use)
 
   use 'dhruvasagar/vim-table-mode'
 
+  use 'ray-x/lsp_signature.nvim'
+
   if packer_bootstrap then
     require('packer').sync()
   end
@@ -283,6 +285,8 @@ require('mason').setup()
 
 local mason_lspconfig = require 'mason-lspconfig'
 mason_lspconfig.setup()
+
+require('lsp_signature').setup()
 
 local null_ls = require 'null-ls'
 null_ls.setup {
