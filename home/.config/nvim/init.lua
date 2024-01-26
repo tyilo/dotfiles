@@ -19,7 +19,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-fugitive' -- Git commands in nvim
   use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
-  use 'ludovicchabant/vim-gutentags' -- Automatic tags management
+  -- use 'ludovicchabant/vim-gutentags' -- Automatic tags management
   -- UI to select things (files, grep results, open buffers...)
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
@@ -53,7 +53,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-eunuch'
 
   use 'windwp/windline.nvim'
-  use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons', config = function()
+  use {'akinsho/bufferline.nvim', requires = 'nvim-tree/nvim-web-devicons', config = function()
     end
   }
 
@@ -84,17 +84,29 @@ require('packer').startup(function(use)
 
   use 'ray-x/lsp_signature.nvim'
 
+  use 'RaafatTurki/hex.nvim'
+
+  use 'meatballs/vim-xonsh'
+
+  use {
+    'mrcjkb/rustaceanvim',
+    version = '^4', -- Recommended
+    ft = { 'rust' },
+  }
+
   if packer_bootstrap then
     require('packer').sync()
   end
 end)
 
-vim.g.gutentags_cache_dir = "~/.cache/nvim/gutentags"
+-- vim.g.gutentags_cache_dir = "~/.cache/nvim/gutentags"
 
 vim.diagnostic.config({
   virtual_text = false,
   virtual_lines = true,
 })
+
+require('hex').setup()
 
 require('windline_setup')
 
@@ -346,6 +358,11 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>so', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.format { async = true }<CR>', opts)
+
+  -- Requires neovim 0.10
+  if vim.lsp.inlay_hint ~= nil then
+    vim.lsp.inlay_hint.enable(0, true)
+  end
 end
 
 -- nvim-cmp supports additional completion capabilities
@@ -402,6 +419,12 @@ lspconfig.lua_ls.setup {
       },
     },
   },
+}
+
+vim.g.rustaceanvim = {
+  server = {
+    on_attach = on_attach,
+  }
 }
 
 -- luasnip setup
