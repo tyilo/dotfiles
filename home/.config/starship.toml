@@ -1,6 +1,10 @@
 [aws]
 disabled = true
 
+[git_commit]
+tag_disabled = false
+#only_detached = false
+
 [status]
 disabled = false
 
