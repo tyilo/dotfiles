@@ -53,9 +53,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-eunuch'
 
   use 'windwp/windline.nvim'
-  use {'akinsho/bufferline.nvim', requires = 'nvim-tree/nvim-web-devicons', config = function()
-    end
-  }
+  use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons' }
 
   use {'folke/which-key.nvim',
     config = function()
@@ -359,10 +357,7 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>so', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.format { async = true }<CR>', opts)
 
-  -- Requires neovim 0.10
-  if vim.lsp.inlay_hint ~= nil then
-    vim.lsp.inlay_hint.enable(0, true)
-  end
+  vim.lsp.inlay_hint.enable()
 end
 
 -- nvim-cmp supports additional completion capabilities
@@ -381,6 +376,15 @@ mason_lspconfig.setup_handlers({
       options['settings'] = {
         yaml = {
           keyOrdering = false
+        }
+      }
+    end
+    if server_name == 'rust_analyzer' then
+      options['settings'] = {
+        ['rust-analyzer'] = {
+          cargo = {
+            features = "all"
+          }
         }
       }
     end
