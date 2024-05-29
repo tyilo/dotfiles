@@ -591,7 +591,7 @@ globalkeys = gears.table.join(
      -- awful.key({}, "Super_L", function() awful.spawn.with_shell("xrandr --auto") end,
      --         {description = "xrandr auto", group = "custom"}),
 
-     awful.key({ modkey }, ";", function() awful.spawn.with_shell("XSECURELOCK_SHOW_DATETIME=1 XSECURELOCK_PASSWORD_PROMPT=asterisks xsecurelock") end,
+     awful.key({ modkey }, ";", function() awful.spawn.with_shell("xset s activate") end,
               {description = "lock computer", group = "custom"}),
      awful.key({ modkey, "Shift" }, ";", function() awful.spawn.with_shell("systemctl suspend") end,
               {description = "suspend computer", group = "custom"})
