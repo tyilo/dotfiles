@@ -36,7 +36,7 @@ source "$HOME/.homesick/repos/homeshick/homeshick.fish"
 
 set -gx MANPATH '/usr/share/man'
 
-rtx activate -s fish | source
+mise activate fish | source
 
 if type -q opam
 	eval (opam env)
