@@ -430,6 +430,13 @@ lspconfig.lua_ls.setup {
 vim.g.rustaceanvim = {
   server = {
     on_attach = on_attach,
+    settings = {
+      ['rust-analyzer'] = {
+        cargo = {
+          features = 'all',
+        },
+      },
+    },
   }
 }
 
