@@ -339,7 +339,9 @@ vim.api.nvim_set_hl(0, "NavicText",               {default = true, bg = "#000000
 vim.api.nvim_set_hl(0, "NavicSeparator",          {default = true, bg = "#000000", fg = "#ffffff"})
 
 local on_attach = function(client, bufnr)
-  navic.attach(client, bufnr)
+  if client.server_capabilities["documentSymbolProvider"] then
+    navic.attach(client, bufnr)
+  end
 
   local opts = { noremap = true, silent = true }
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
