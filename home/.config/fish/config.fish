@@ -32,7 +32,7 @@ end
 
 # Fix syncing of history
 function save_history --on-event fish_preexec
-    history --save
+	history --save
 end
 
 ## Remove duplicated
