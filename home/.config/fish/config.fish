@@ -1,5 +1,14 @@
 if status is-interactive
 	starship init fish | source
+	function fish_preexec --on-event fish_preexec
+		tput sc
+		set text "at $(set_color yellow)$(date +'%Y-%m-%d %H:%M:%S')$(set_color normal)"
+		set length (string length --visible "$text")
+		tput cuu 2
+		tput cuf (math $COLUMNS - $length)
+		echo -n "$text"
+		tput rc
+	end
 
 	set -gx ATUIN_NOBIND "true"
 	atuin init fish | source
