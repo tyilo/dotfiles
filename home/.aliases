@@ -44,7 +44,7 @@ alias gdb='gdb -q'
 
 alias ip='ip -color -brief'
 
-alias cat='bat'
+alias cat='bat --plain'
 
 # See https://github.com/BurntSushi/ripgrep/issues/623
 alias rg="rg --hidden --max-columns 1000 --glob '!.git' --glob '!package-lock.json'"
