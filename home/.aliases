@@ -48,3 +48,5 @@ alias cat='bat --plain'
 
 # See https://github.com/BurntSushi/ripgrep/issues/623
 alias rg="rg --hidden --max-columns 1000 --glob '!.git' --glob '!package-lock.json'"
+
+alias ugrep="ugrep --heading --line-number --hidden --exclude-dir=.git --exclude=package-lock.json"
