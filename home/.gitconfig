@@ -20,6 +20,7 @@
 [url "git@gitlab.au.dk:"]
 	insteadOf = https://gitlab.au.dk/
 [diff]
+	algorithm = histogram
 	tool = vimdiff3
 	colorMoved = default
 	colormovedws = allow-indentation-change
@@ -27,6 +28,14 @@
 	tool = vimdiff3
 [mergetool]
 	path = nvim
+[push]
+	default = simple
+	autoSetupRemote = true
+	followTags = true
+[fetch]
+	prune = true
+	pruneTags = true
+	all = true
 [pull]
 	rebase = false
 [filter "lfs"]
@@ -38,3 +47,8 @@
 	defaultBranch = master
 [rerere]
 	enabled = true
+	autoupdate = true
+[credential]
+	helper = store
+[branch]
+	sort = -committerdate
