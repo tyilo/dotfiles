@@ -5,7 +5,7 @@ StartLimitIntervalSec=0
 [Service]
 Environment=XSECURELOCK_SHOW_DATETIME=1
 Environment=XSECURELOCK_PASSWORD_PROMPT=asterisks
-ExecStart=/usr/bin/xss-lock --notifier=/usr/lib/xsecurelock/dimmer --transfer-sleep-lock -- xsecurelock
+ExecStart=/usr/bin/xss-lock --session=${XDG_SESSION_ID} --notifier=/usr/lib/xsecurelock/dimmer --transfer-sleep-lock -- xsecurelock
 Restart=on-failure
 RestartSec=1
 
