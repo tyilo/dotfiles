@@ -37,14 +37,7 @@ require('packer').startup(function(use)
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
   }
-  use({
-    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    config = function()
-      require("lsp_lines").setup()
-    end,
-  })
 
-  use 'jose-elias-alvarez/null-ls.nvim'
   use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
   use 'hrsh7th/cmp-nvim-lsp'
   use 'saadparwaiz1/cmp_luasnip'
@@ -82,7 +75,7 @@ require('packer').startup(function(use)
 
   use 'ray-x/lsp_signature.nvim'
 
-  use 'RaafatTurki/hex.nvim'
+  -- use 'RaafatTurki/hex.nvim'
 
   use 'meatballs/vim-xonsh'
 
@@ -104,7 +97,7 @@ vim.diagnostic.config({
   virtual_lines = true,
 })
 
-require('hex').setup()
+-- require('hex').setup()
 
 require('windline_setup')
 
@@ -224,13 +217,6 @@ vim.api.nvim_set_keymap('n', '<leader>sp', [[<cmd>lua require('telescope.builtin
 vim.api.nvim_set_keymap('n', '<leader>so', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], { noremap = true, silent = true })
 
-vim.keymap.set(
-  "",
-  "<leader>l",
-  require("lsp_lines").toggle,
-  { desc = "Toggle lsp_lines" }
-)
-
 -- Treesitter configuration
 -- Parsers must be installed manually via :TSInstall
 require('nvim-treesitter.configs').setup {
@@ -297,16 +283,6 @@ local mason_lspconfig = require 'mason-lspconfig'
 mason_lspconfig.setup()
 
 require('lsp_signature').setup()
-
-local null_ls = require 'null-ls'
-null_ls.setup {
-  sources = {
-    null_ls.builtins.formatting.black,
-    null_ls.builtins.formatting.isort,
-    null_ls.builtins.formatting.prettier,
-    null_ls.builtins.diagnostics.shellcheck,
-  }
-}
 
 local navic = require('nvim-navic')
 vim.api.nvim_set_hl(0, "NavicIconsFile",          {default = true, bg = "#000000", fg = "#ffffff"})
