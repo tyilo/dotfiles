@@ -33,8 +33,8 @@ require('packer').startup(function(use)
   -- Additional textobjects for treesitter
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
+    "mason-org/mason.nvim",
+    "mason-org/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
   }
 
@@ -341,33 +341,27 @@ end
 -- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+vim.lsp.config("*", {
+  capabilities = capabilities,
+  on_attach = on_attach,
+})
 
-local lspconfig = require 'lspconfig'
-
-mason_lspconfig.setup_handlers({
-  function(server_name)
-    local options = {
-      on_attach = on_attach,
-      capabilties = capabilities,
+vim.lsp.config("yamlls", {
+  settings = {
+    yaml = {
+      keyOrdering = false
     }
-    if server_name == 'yamlls' then
-      options['settings'] = {
-        yaml = {
-          keyOrdering = false
-        }
+  }
+})
+
+vim.lsp.config("rust-analyzer", {
+  settings = {
+    ['rust-analyzer'] = {
+      cargo = {
+        features = "all"
       }
-    end
-    if server_name == 'rust_analyzer' then
-      options['settings'] = {
-        ['rust-analyzer'] = {
-          cargo = {
-            features = "all"
-          }
-        }
-      }
-    end
-    lspconfig[server_name].setup(options)
-  end
+    }
+  }
 })
 
 -- Example custom server
@@ -375,10 +369,7 @@ mason_lspconfig.setup_handlers({
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
-
-lspconfig.lua_ls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
+vim.lsp.config("lua_ls", {
   settings = {
     Lua = {
       runtime = {
@@ -401,7 +392,7 @@ lspconfig.lua_ls.setup {
       },
     },
   },
-}
+})
 
 vim.g.rustaceanvim = {
   server = {
