@@ -393,7 +393,7 @@ awful.screen.connect_for_each_screen(function(s)
             -- volume_widget,
             -- bluetooth_headset_battery_widget,
             seperator,
-            battery_widget,
+            battery_widget(),
             mytextclock,
             s.mylayoutbox,
         },
