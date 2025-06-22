@@ -473,6 +473,14 @@ globalkeys = gears.table.join(
 
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
+    awful.key({ modkey, "Control", "Shift" }, "r", function ()
+      local tag = awful.screen.focused().selected_tag
+      for _, c in ipairs(client.get()) do
+        awful.client.movetotag(tag, c)
+      end
+      awesome.restart()
+    end,
+              {decription = "move all clients to current tag and reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
 
