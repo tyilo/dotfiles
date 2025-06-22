@@ -1,1 +1,0 @@
-../../../../../../../.config/awesome/calendar/calendar.lua

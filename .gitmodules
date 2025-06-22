@@ -1,3 +1,6 @@
 [submodule "home/.config/awesome/awesome-wm-widgets"]
 	path = home/.config/awesome/awesome-wm-widgets
 	url = https://github.com/streetturtle/awesome-wm-widgets
+[submodule "home/.config/awesome/deficient"]
+	path = home/.config/awesome/deficient
+	url = https://github.com/deficient/deficient

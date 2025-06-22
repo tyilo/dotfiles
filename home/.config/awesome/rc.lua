@@ -26,6 +26,9 @@ local rule_tags = require("rule_tags")
 
 local vicious = require("vicious")
 
+local deficient = require("deficient")
+
+local calendar_widget = deficient.calendar({})
 -- local cpu_widget = require('awesome-wm-widgets.cpu-widget.cpu-widget')
 -- local ram_widget = require('awesome-wm-widgets.ram-widget.ram-widget')
 -- local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
@@ -141,8 +144,6 @@ local battery_widget = assault({
     charging_color = "#00ff00"
 })
 ]]
-
-local calendar = require("calendar")
 
 awful.util.shell = '/bin/bash'
 
@@ -278,7 +279,7 @@ separator = wibox.widget {
 
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock(" %a %b %d, %H:%M:%S ", 1)
-calendar({}):attach(mytextclock)
+calendar_widget:attach(mytextclock)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
