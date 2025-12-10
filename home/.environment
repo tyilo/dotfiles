@@ -11,7 +11,7 @@ export PATH="$PATH:$HOME/Android/Sdk/build-tools/latest"
 export PATH="$PATH:$HOME/Android/Sdk/cmdline-tools/latest/bin"
 
 export EDITOR=nvim
-export BROWSER=firefox-developer-edition
+export BROWSER=firefox
 export JQ_COLORS="0;31"
 
 # For Karma
