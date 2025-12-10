@@ -15,11 +15,8 @@ if status is-interactive
 	bind \cr _atuin_search
 	bind -M insert \cr _atuin_search
 
-	set -g VIRTUALFISH_PLUGINS "auto_activation compat_aliases"
-
 	fundle plugin 'oh-my-fish/plugin-bang-bang'
 	fundle plugin 'oh-my-fish/plugin-errno'
-	fundle plugin 'oh-my-fish/plugin-virtualfish'
 	fundle plugin 'jethrokuan/z'
 
 	fundle init
