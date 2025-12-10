@@ -99,7 +99,7 @@ vim.diagnostic.config({
 
 -- require('hex').setup()
 
-require('windline_setup')
+require('wlsample.bubble')
 
 vim.opt.termguicolors = true
 require('bufferline').setup {}
