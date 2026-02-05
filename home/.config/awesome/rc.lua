@@ -114,7 +114,7 @@ local function set_brightness(value)
 end
 
 local function step_brightness(diff)
-  local step = math.floor(get_brightness() / brightness_step)
+  local step = math.floor(get_brightness() / brightness_step + 0.5)
   set_brightness((step + diff) * brightness_step)
 end
 
