@@ -32,7 +32,7 @@ local calendar_widget = deficient.calendar({})
 -- local cpu_widget = require('awesome-wm-widgets.cpu-widget.cpu-widget')
 -- local ram_widget = require('awesome-wm-widgets.ram-widget.ram-widget')
 -- local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
-local battery_widget = require('awesome-wm-widgets.battery-widget.battery')
+local battery_widget = require('awesome-wm-widgets.batteryarc-widget.batteryarc')
 -- local printer_jobs_widget = require('printer-jobs-widget')
 -- local unread_emails_widget = require('unread-emails-widget')
 -- local bluetooth_headset_battery_widget = require('bluetooth-headset-battery-widget')
@@ -394,7 +394,9 @@ awful.screen.connect_for_each_screen(function(s)
             -- volume_widget,
             -- bluetooth_headset_battery_widget,
             seperator,
-            battery_widget(),
+            battery_widget({
+              show_current_level = true,
+            }),
             mytextclock,
             s.mylayoutbox,
         },
