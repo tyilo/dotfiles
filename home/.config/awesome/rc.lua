@@ -396,6 +396,7 @@ awful.screen.connect_for_each_screen(function(s)
             seperator,
             battery_widget({
               show_current_level = true,
+              enable_battery_warning = false,
             }),
             mytextclock,
             s.mylayoutbox,
